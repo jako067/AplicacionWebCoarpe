@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_budget');
             $table->decimal('final_price', 10, 2)->default(0);
             $table->integer('workers_quantity');
+            $tabel->decimal('staff_price');
             $table->integer('hours_quantity');
             $table->decimal('price_x_hour', 8, 2);
 

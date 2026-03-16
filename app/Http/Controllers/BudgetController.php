@@ -31,15 +31,20 @@ class BudgetController extends Controller
         //////////////////// REVISAR EN ESTAR EL AUTH ///////////////////////
 
     {
+        //normal
         $calculatedFinalPrice = $request->input('workers_quantity') * $request->input('hours_quantity') * $request->input('price_x_hour');
+        //con el precio del staff (?)
+        $calculatedFinalPriceStaff = $request->input('workers_quantity') * $request->input('hours_quantity') * $request->input('staff_price');
+
 
         $budget = new Budget();
 
 
         $budget->workers_quantity = $request->input('workers_quantity');
         $budget->hours_quantity = $request->input('hours_quantity');
+        $budget->staff_price = $request->input('staff_price');
         $budget->price_x_hour= $request->input('price_x_hour');
-        $budget->final_price = $calculatedFinalPrice;
+        $budget->final_price = $calculatedFinalPrice + $calculatedFinalPriceStaff;
         $budget->save();
 
         return redirect()->route('budgets.index');
@@ -71,9 +76,9 @@ class BudgetController extends Controller
 
 
         $budget->workers_quantity = $request->input('workers_quantity');
-        $budget->hours_quantity   = $request->input('hours_quantity');
-        $budget->price_x_hour     = $request->input('price_x_hour');
-        $budget->final_price      = $calculatedFinalPrice;
+        $budget->hours_quantity = $request->input('hours_quantity');
+        $budget->price_x_hour = $request->input('price_x_hour');
+        $budget->final_price = $calculatedFinalPrice;
         $budget->save();
 
         return redirect()->route('budgets.index');

@@ -13,8 +13,7 @@ class Budget extends Model
     // }
     public function materials()
     {
-        return $this->belongsToMany(Material::class, 'budget_material', 'budget_id', 'material_id')
-                    ->withPivot('quantity')
-                    ->withTimestamps();
+        return $this->belongsToMany(Material::class, 'budget_material', 'budget_id', 'material_id');
+
     }
 }
