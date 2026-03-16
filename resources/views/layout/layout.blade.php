@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    Esto es el layout
+    @include('layout.partials.header')
     @yield('body')
 
 </body>
