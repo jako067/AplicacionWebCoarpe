@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
@@ -10,7 +10,9 @@ class Material extends Model
     public function budget()
     {
 
-        return $this->belongsTo(Budget::class, 'budget_id', 'id_budget');
+        return $this->belongsTo(Budget::class, 'budget_id', 'id_budget')
+        ->withPivot('quantity')
+                    ->withTimestamps();
     }
 
     // public function user()

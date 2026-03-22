@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Budget;
 use Illuminate\Http\Request;
+use App\Http\Requests\BudgetRequest;
 
 class BudgetController extends Controller
 {
@@ -27,28 +28,22 @@ class BudgetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store( BudgetRequest $request)
-        //////////////////// REVISAR EN ESTAR EL AUTH ///////////////////////
+    public function store(BudgetRequest $request)
+{
 
-    {
-        //normal
-        $calculatedFinalPrice = $request->input('workers_quantity') * $request->input('hours_quantity') * $request->input('price_x_hour');
-        //con el precio del staff (?)
-        $calculatedFinalPriceStaff = $request->input('workers_quantity') * $request->input('hours_quantity') * $request->input('staff_price');
+    $totalNormal = $request->input('workers_quantity') * $request->input('hours_quantity') * $request->input('price_x_hour');
+    $totalStaff = $request->input('staff_quantity') * $request->input('hours_quantity') * $request->input('staff_price');
+    $budget = new Budget();
+    $budget->workers_quantity = $request->input('workers_quantity');
+    $budget->hours_quantity = $request->input('hours_quantity');
+    $budget->price_x_hour = $request->input('price_x_hour');
+    $budget->staff_quantity = $request->input('staff_quantity');
+    $budget->staff_price = $request->input('staff_price');
+    $budget->final_price = $totalNormal + $totalStaff;
+    $budget->save();
 
-
-        $budget = new Budget();
-
-
-        $budget->workers_quantity = $request->input('workers_quantity');
-        $budget->hours_quantity = $request->input('hours_quantity');
-        $budget->staff_price = $request->input('staff_price');
-        $budget->price_x_hour= $request->input('price_x_hour');
-        $budget->final_price = $calculatedFinalPrice + $calculatedFinalPriceStaff;
-        $budget->save();
-
-        return redirect()->route('budgets.index');
-    }
+    return redirect()->route('budgets.index');
+}
 
     /**
      * Display the specified resource.
@@ -94,4 +89,5 @@ class BudgetController extends Controller
         $budget->delete();
         return redirect()->route('budgets.index');
     }
+
 }

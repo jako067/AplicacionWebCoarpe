@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use Illuminate\Http\Request;
+use App\Http\Requests\MaterialRequest;
         //////////////////// REVISAR EN ESTAR EL AUTH ///////////////////////
 
 class MaterialController extends Controller
