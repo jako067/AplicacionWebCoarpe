@@ -2,6 +2,8 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\BudgetController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
@@ -23,3 +25,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('account',[UserController::class,'account'])->name('users.account')->middleware('auth');
 
 Route::resource('materials', MaterialController::class);
+
+Route::resource('budgets', BudgetController::class);
+

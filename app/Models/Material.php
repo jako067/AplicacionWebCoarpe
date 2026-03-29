@@ -1,24 +1,22 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    use HasFactory;
+   protected $primaryKey = 'material_id';
+    public function budget()
+    {
 
-    protected $fillable = [
-        'material_id',
-        'Material_name',
-        'Unity_price',
-        'Quantity',
-        'Supplier',
-        'Contact',
-    ];
+        return $this->belongsTo(Budget::class, 'budget_id', 'id_budget')
+        ->withPivot('quantity')
+                    ->withTimestamps();
+    }
 
-    protected $primaryKey = 'material_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id', 'id');
+    // }
 }

@@ -4,65 +4,78 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use Illuminate\Http\Request;
+use App\Http\Requests\MaterialRequest;
+        //////////////////// REVISAR EN ESTAR EL AUTH ///////////////////////
 
 class MaterialController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $materials = Material::all();
         return view('materials.index', compact('materials'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         return view('materials.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(MaterialRequest $request)
     {
-        $request->validate([
-            'Material_name' => 'required|string|max:255',
-            'Unity_price' => 'required|numeric',
-            'Quantity' => 'required|integer',
-            'Supplier' => 'required|string|max:255',
-            'Contact' => 'required|string|max:255',
-        ]);
-
-        Material::create($request->all());
-        return redirect()->route('materials.index')->with('success', 'Material creado correctamente.');
+        $material = new Material();
+        $material->material_name = $request->input('material_name');
+        $material->unity_price = $request->input('unity_price');
+        $material->quantity = $request->input('quantity');
+        $material->supplier_contact = $request->input('supplier_contact');
+        $material->save();
+        return redirect()->route('materials.index');
     }
 
-    public function show($id)
+    /**
+     * Display the specified resource.
+     */
+    public function show(Material $material)
     {
-        $material = Material::findOrFail($id);
-        return view('materials.show', compact('material'));
+       return view('materials.show', compact('material'));
     }
 
-    public function edit($id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Material $material)
     {
-        $material = Material::findOrFail($id);
         return view('materials.edit', compact('material'));
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Material $material)
     {
-        $request->validate([
-            'Material_name' => 'required|string|max:255',
-            'Unity_price' => 'required|numeric',
-            'Quantity' => 'required|integer',
-            'Supplier' => 'required|string|max:255',
-            'Contact' => 'required|string|max:255',
-        ]);
+        $material->material_name = $request->input('material_name');
+        $material->unity_price = $request->input('unity_price');
+        $material->quantity = $request->input('quantity');
+        $material->supplier_contact = $request->input('supplier_contact');
+        $material->save();
 
-        $material = Material::findOrFail($id);
-        $material->update($request->all());
-        return redirect()->route('materials.index')->with('success', 'Material actualizado correctamente.');
+        return redirect()->route('materials.index');
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Material $material)
     {
-        $material = Material::findOrFail($id);
         $material->delete();
-        return redirect()->route('materials.index')->with('success', 'Material eliminado correctamente.');
+        return redirect()->route('materials.index');
     }
 }

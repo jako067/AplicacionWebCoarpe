@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @auth
     <a href="{{ route('logout') }}">Cerrar Sesión</a>
 @else
@@ -5,3 +6,8 @@
     <a href="{{ route('signup.form') }}">Registrarse</a>
 @endauth
 <a href="{{ route('index') }}">Inicio</a>
+=======
+<header>
+    <h1>Gestión Coarpe</h1>
+</header>
+>>>>>>> sole
