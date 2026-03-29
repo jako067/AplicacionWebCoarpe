@@ -1,7 +1,6 @@
 @extends('layout.layout')
 @section('title','Login')
-@section('body')
-    sadasd
+@section('content')
     <form action="{{route('login')}}" method="post">
         @csrf
 

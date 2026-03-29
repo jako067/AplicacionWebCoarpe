@@ -17,15 +17,15 @@ class LoginController extends Controller
         return view('auth.signup');
     }
 
-   public function signup(SignupRequest $request):RedirectResponse
+   public function signup(SignupRequest $signupRequest):RedirectResponse
    {
     $user =new User();
-    $user->username = $request->input('username');
-    $user->name = $request->input('name');
-    $user->email = $request->input('email');
-    $user->phone=$request->input('phone');
-    $user->DNI=$request->input('DNI');
-    $user->password = Hash::make($request->input('password'));
+    $user->username = $signupRequest->input('username');
+    $user->name = $signupRequest->input('name');
+    $user->email = $signupRequest->input('email');
+    $user->phone=$signupRequest->input('phone');
+    $user->DNI=$signupRequest->input('DNI');
+    $user->password = Hash::make($signupRequest->input('password'));
     $user->save();
 
     Auth::login($user);

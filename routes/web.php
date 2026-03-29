@@ -9,7 +9,6 @@ use App\Http\Controllers\IndexController;
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Controllers\MaterialController;
 
-
 //se puede usar ya el middleware ('is_admin');
 
 Route::get('/', IndexController::class)->name('index');

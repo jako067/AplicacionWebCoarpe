@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-@extends('layout.layout')
-@section('title', 'Bienvenido')
-@section('body')
-    <h1>Bienvenido a nuestra aplicación</h1>
-
-@endsection
-=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,4 +27,3 @@
 </div>
 </body>
 </html>
->>>>>>> sole

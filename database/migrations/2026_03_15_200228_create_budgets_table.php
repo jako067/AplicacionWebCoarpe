@@ -16,7 +16,7 @@ return new class extends Migration
             $table->decimal('final_price', 10, 2)->default(0);
             $table->integer('workers_quantity');
             $table->integer('staff_quantity');
-            $tabel->decimal('staff_price');
+            $table->decimal('staff_price');
             $table->integer('hours_quantity');
             $table->decimal('price_x_hour', 8, 2);
 

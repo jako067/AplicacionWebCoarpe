@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('title','Perfil')
-@section('body')
+@section('content')
 
 <br>
     {{Auth::user()->name}}
@@ -12,6 +12,6 @@
     {{Auth::user()->phone}}
     <br>
     {{Auth::user()->DNI}}
-    <br>     
+    <br>
 
 @endsection

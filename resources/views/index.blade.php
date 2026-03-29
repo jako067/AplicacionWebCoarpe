@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('title','Inicio')
-@section('body')
+@section('content')
     Esto es el inicio de la aplicación.
 
     @auth
