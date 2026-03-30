@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Material;
 use Illuminate\Http\Request;
+use App\Http\Requests\MaterialRequest;
 
 class MaterialController extends Controller
 {
@@ -18,18 +19,16 @@ class MaterialController extends Controller
         return view('materials.create');
     }
 
-    public function store(Request $request)
+    public function store(MaterialRequest $request)
     {
-        $request->validate([
-            'Material_name' => 'required|string|max:255',
-            'Unity_price' => 'required|numeric',
-            'Quantity' => 'required|integer',
-            'Supplier' => 'required|string|max:255',
-            'Contact' => 'required|string|max:255',
-        ]);
-
-        Material::create($request->all());
-        return redirect()->route('materials.index')->with('success', 'Material creado correctamente.');
+        $material = new Material();
+        $material->Material_name = $request->input('Material_name');
+        $material->Unity_price = $request->input('Unity_price');
+        $material->Quantity = $request->input('Quantity');
+        $material->Supplier = $request->input('Supplier');
+        $material->Contact = $request->input('Contact');
+        $material->save();
+        return redirect()->route('materials.index');
     }
 
     public function show($id)
@@ -44,25 +43,22 @@ class MaterialController extends Controller
         return view('materials.edit', compact('material'));
     }
 
-    public function update(Request $request, $id)
+    public function update(MaterialRequest $request, $id)
     {
-        $request->validate([
-            'Material_name' => 'required|string|max:255',
-            'Unity_price' => 'required|numeric',
-            'Quantity' => 'required|integer',
-            'Supplier' => 'required|string|max:255',
-            'Contact' => 'required|string|max:255',
-        ]);
-
         $material = Material::findOrFail($id);
-        $material->update($request->all());
-        return redirect()->route('materials.index')->with('success', 'Material actualizado correctamente.');
+        $material->Material_name = $request->input('Material_name');
+        $material->Unity_price = $request->input('Unity_price');
+        $material->Quantity = $request->input('Quantity');
+        $material->Supplier = $request->input('Supplier');
+        $material->Contact = $request->input('Contact');
+        $material->save();
+        return redirect()->route('materials.index');
     }
 
     public function destroy($id)
     {
         $material = Material::findOrFail($id);
         $material->delete();
-        return redirect()->route('materials.index')->with('success', 'Material eliminado correctamente.');
+        return redirect()->route('materials.index');
     }
 }

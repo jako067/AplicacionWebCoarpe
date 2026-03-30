@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    use HasFactory;
 
     protected $fillable = [
         'material_id',
@@ -18,7 +16,4 @@ class Material extends Model
         'Contact',
     ];
 
-    protected $primaryKey = 'material_id';
-    public $incrementing = true;
-    protected $keyType = 'int';
 }
