@@ -88,7 +88,7 @@ class BudgetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Budget $budget)
+    public function update(BudgetRequest $request, Budget $budget)
     {
         //cálcul del preu final pa despúes
         $calculatedFinalPrice = $request->input('workers_quantity') * $request->input('hours_quantity') * $request->input('price_x_hour');

@@ -29,7 +29,7 @@ class MaterialController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MaterailRequest $request)
+    public function store(MaterialRequest $request)
     {
         $material = new Material();
         $material->material_name = $request->input('material_name');
@@ -59,7 +59,7 @@ class MaterialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Material $material)
+    public function update(MaterialRequest $request, Material $material)
     {
         $material->material_name = $request->input('material_name');
         $material->unity_price = $request->input('unity_price');
