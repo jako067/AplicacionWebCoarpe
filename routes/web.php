@@ -21,7 +21,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('account',[UserController::class,'account'])->name('users.account')->middleware('auth');
 
-Route::resource('materials', MaterialController::class);
-
-Route::resource('budgets', BudgetController::class);
+Route::resource('materials', MaterialController::class)->middleware('is_admin');
+Route::resource('budgets', BudgetController::class)->middleware('is_admin');
 

@@ -1,7 +1,6 @@
 <nav>
     <ul>
-        <li><a href="{{ route('materials.index') }}">Materiales</a></li>
-        <li><a href="{{ route('budgets.index') }}">Presupuestos</a></li>
+       Rutas a los apartados de la web
     </ul>
 </nav>
 <hr>
