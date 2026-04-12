@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Budget;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use App\Http\Requests\BudgetRequest;
 
@@ -22,7 +23,8 @@ class BudgetController extends Controller
      */
     public function create()
     {
-        return view('budgets.create');
+        $materials = \App\Models\Material::all();
+        return view('budgets.create', compact('materials'));
     }
 
     /**
@@ -41,6 +43,28 @@ class BudgetController extends Controller
     $budget->staff_price = $request->input('staff_price');
     $budget->final_price = $totalNormal + $totalStaff;
     $budget->save();
+    // si selecciona el chechbox
+    if ($request->input('crear_material_nuevo') == '1') {
+
+        // Creamos el objeto Material (Asignación manual)
+        $material = new Material();
+        $material->material_name = $request->input('new_material_name');
+        $material->supplier_contact = $request->input('new_supplier_contact');
+        $material->unity_price = $request->input('new_unity_price');
+        $material->quantity = $request->input('new_stock_quantity');
+        $material->save();
+
+        $budget->materials()->attach($material->material_id, [
+            'quantity' => $request->input('quantity_used_in_budget')
+        ]);
+    }
+    //materiales que ja están en la BD
+    if ($request->filled('existing_material_id') && $request->filled('existing_material_quantity')) {
+        $budget->materials()->attach(
+            $request->input('existing_material_id'),
+            ['quantity' => $request->input('existing_material_quantity')]
+        );
+    }
 
     return redirect()->route('budgets.index');
 }
@@ -82,9 +106,11 @@ class BudgetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Budget $budget)
+    public function destroy($id)
     {
-        // si borrem un presupost borrem els materials asignats(?)
+
+        $budget = Budget::findOrFail($id);
+        $budget->materials()->detach();
 
         $budget->delete();
         return redirect()->route('budgets.index');
