@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AbsenceController;
+use App\Http\Controllers\AbsenceController2;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BudgetController;
@@ -24,3 +26,11 @@ Route::get('account',[UserController::class,'account'])->name('users.account')->
 Route::resource('materials', MaterialController::class)->middleware('is_admin');
 Route::resource('budgets', BudgetController::class)->middleware('is_admin');
 
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+
+Route::prefix('users/{user}')->group(function () {
+    Route::get('/absences', [AbsenceController2::class, 'index'])->name('absences.index');
+    Route::get('/absences/create', [AbsenceController2::class, 'create'])->name('absences.create');
+    Route::post('/absences', [AbsenceController2::class, 'store'])->name('absences.store');
+});
