@@ -12,4 +12,6 @@
 <a href="{{ route('materials.index') }}">Materials</a>
 <a href="{{ route('budgets.index') }}">Budgets</a>
 <a href="{{ route('users.index') }}">Usuarios</a>
+<a href="{{ route('tasks.index') }}">Tareas</a>
+<a href="{{ route('messages.index') }}">Mensajes</a>
 
