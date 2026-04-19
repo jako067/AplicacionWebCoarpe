@@ -10,6 +10,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\IndexController;
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\MessageController;
 
 //se puede usar ya el middleware ('is_admin');
 
@@ -25,6 +27,8 @@ Route::get('account',[UserController::class,'account'])->name('users.account')->
 
 Route::resource('materials', MaterialController::class)->middleware('is_admin');
 Route::resource('budgets', BudgetController::class)->middleware('is_admin');
+Route::resource('tasks', TaskController::class)->middleware('auth');
+Route::resource('messages', MessageController::class)->middleware('auth');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
