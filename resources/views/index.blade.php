@@ -27,7 +27,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title">Materiales</h5>
 
-                                <a href="{{ route('materials.index') }}" class="btn btn-outline-primary btn-sm mb-2">
+                                <a href="{{ route('materials.index') }}" class="btn btn-outline-primary btn-sm">
                                     Ver listado
                                 </a>
 
@@ -43,7 +43,7 @@
                             <div class="card-body text-center">
                                 <h5 class="card-title">Presupuestos</h5>
 
-                                <a href="{{ route('budgets.index') }}" class="btn btn-outline-primary btn-sm mb-2">
+                                <a href="{{ route('budgets.index') }}" class="btn btn-outline-primary btn-sm ">
                                     Ver listado
                                 </a>
 

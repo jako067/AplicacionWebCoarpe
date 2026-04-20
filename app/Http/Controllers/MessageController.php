@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Http\Requests\MessageRequest;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -39,6 +40,7 @@ class MessageController extends Controller
         $message->subject  = $request->input('subject');
         $message->body     = $request->input('body');
         $message->document = $documentPath;
+        $message->user_id = Auth::id();
         $message->save();
 
         return redirect()->route('messages.index');
@@ -69,7 +71,7 @@ class MessageController extends Controller
             $documentPath = $request->file('document')->store('documents', 'public');
             $message->document = $documentPath;
         }
-
+        $message->user_id = Auth::id();
         $message->subject = $request->input('subject');
         $message->body    = $request->input('body');
         $message->save();

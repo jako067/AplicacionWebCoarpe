@@ -59,9 +59,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Absence::class);
     }
-    public function messages() : BelongsToMany {
+    public function messagesCreated()
+    {
+        return $this->hasMany(Message::class, 'user_id');
+    }
 
-    return $this->belongsToMany(Message::class);
-
+    public function messages(): BelongsToMany
+    {
+        return $this->belongsToMany(Message::class); //N:M
     }
 }

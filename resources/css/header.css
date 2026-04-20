@@ -27,3 +27,27 @@
 .custom-navbar i {
     margin-right: 5px;
 }
+
+
+.btn-outline-custom {
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    transition: 0.2s;
+}
+
+.btn-outline-custom:hover {
+    background-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.btn-primary-custom {
+    background-color: var(--color-accent);
+    color: var(--color-accent);
+    border: none;
+    transition: 0.2s;
+}
+
+.btn-primary-custom:hover {
+    background-color: #0056b3;
+    color: var(--color-accent);
+}

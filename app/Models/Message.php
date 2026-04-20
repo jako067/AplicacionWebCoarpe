@@ -8,8 +8,13 @@ use App\Models\User;
 
 class Message extends Model
 {
-    public function users(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class);
-    }
+public function user()
+{
+    return $this->belongsTo(User::class); // autor
+}
+
+public function users(): BelongsToMany
+{
+    return $this->belongsToMany(User::class); // participantes N:M
+}
 }
