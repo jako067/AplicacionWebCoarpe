@@ -1,0 +1,7 @@
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.bg-light {
+    border: 1px solid #eee;
+}

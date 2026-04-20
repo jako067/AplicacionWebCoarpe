@@ -1,40 +1,42 @@
 
-body {
-    font-family: Arial, sans-serif;
-    background: #f8f8f8;
-    color: #222;
-    margin: 0;
-    padding: 0;
+@import './main.css';
+@import './layout.css';
+@import './header.css';
+@import './table.css';
+@import './absences/create.css';
+@import './absences/index.css';
+@import './auth/login.css';
+@import './auth/signup.css';
+@import './budgets/create.css';
+@import './budgets/index.css';
+@import './daily_work/index.css';
+@import './daily_work/show.css';
+
+
+/* CSS Global */
+:root {
+    --color-primary: #1e293b;
+    --color-secondary: #334155;
+    --color-accent: #f59e0b;
+    --color-text: #f8fafc;
+    --color-hover: #475569;
 }
 
-h1 {
-    color: #2c3e50;
-    font-size: 2em;
-    margin-bottom: 20px;
+.btn-primary-custom {
+    background-color: var(--color-accent);
+    border: none;
+    color: #000;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    background: #fff;
+.btn-primary-custom:hover {
+    opacity: 0.9;
 }
-th, td {
-    border: 1px solid #ccc;
-    padding: 8px 12px;
-    text-align: left;
+
+.btn-outline-custom {
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
 }
-th {
-    background: #eee;
-}
-button, input, select {
-    font-size: 1em;
-    padding: 6px 10px;
-    margin: 4px 0;
-}
-a {
-    color: #3498db;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
+
+.btn-outline-custom:hover {
+    background-color: var(--color-hover);
 }

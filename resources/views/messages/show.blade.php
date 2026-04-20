@@ -20,7 +20,7 @@
     </ul>
 
     <br>
-    <a href="{{ route('messages.edit', $message->id_message) }}">
+    <a href="{{ route('messages.edit', $message->id) }}">
         <button>Editar</button>
     </a>
 

@@ -1,34 +1,66 @@
 @extends('layout.layout')
+
 @section('title','Inicio')
+
 @section('content')
-    Esto es el inicio de la aplicación.
 
-    @auth
-        Bienvenido {{Auth::user()->name}}
-        @if (auth()->user()->isAdmin())
-         <ul>
-        <li style="margin-bottom: 15px;">
-            <strong>Materiales:</strong>
-            <a href="{{ route('materials.index') }}" style="margin-left: 10px;">Ir al Listado</a> |
-            <a href="{{ route('materials.create') }}"> Crear Material</a>
-        </li>
+<div class="container mt-5">
 
-        <li>
-            <strong>Presupuestos:</strong>
-            <a href="{{ route('budgets.index') }}" style="margin-left: 10px;"> Ir al Listado</a> |
-            <a href="{{ route('budgets.create') }}"> Crear Presupuesto</a>
-        </li>
-    </ul>
-    @endif
+    <div class="card shadow-sm p-4 mb-4">
+        <h2 class="text-center mb-3">Inicio</h2>
 
+        <p class="text-center text-muted">
+            Esto es el inicio de la aplicación.
+        </p>
 
-    @endauth
+        @auth
+            <div class="text-center mb-4">
+                <h5>Bienvenido, {{ Auth::user()->name }}</h5>
+            </div>
 
+            @if (auth()->user()->isAdmin())
 
+                <div class="row g-3">
 
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Materiales</h5>
 
+                                <a href="{{ route('materials.index') }}" class="btn btn-outline-primary btn-sm mb-2">
+                                    Ver listado
+                                </a>
 
+                                <a href="{{ route('materials.create') }}" class="btn btn-primary btn-sm">
+                                    Crear material
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Presupuestos</h5>
 
+                                <a href="{{ route('budgets.index') }}" class="btn btn-outline-primary btn-sm mb-2">
+                                    Ver listado
+                                </a>
+
+                                <a href="{{ route('budgets.create') }}" class="btn btn-primary btn-sm">
+                                    Crear presupuesto
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            @endif
+        @endauth
+
+    </div>
+
+</div>
 
 @endsection

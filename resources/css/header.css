@@ -1,0 +1,29 @@
+.custom-navbar {
+    background-color: var(--color-primary);
+}
+
+.custom-navbar .nav-link {
+    color: var(--color-text);
+    transition: 0.2s;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--color-accent);
+}
+
+.custom-navbar .navbar-brand {
+    color: var(--color-text);
+}
+
+.custom-navbar .navbar-brand:hover {
+    color: var(--color-accent);
+}
+
+.user-text {
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.custom-navbar i {
+    margin-right: 5px;
+}

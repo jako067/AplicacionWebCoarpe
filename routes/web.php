@@ -8,6 +8,8 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\law;
+use App\Http\Controllers\lawController;
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TaskController;
@@ -38,3 +40,7 @@ Route::prefix('users/{user}')->group(function () {
     Route::get('/absences/create', [AbsenceController2::class, 'create'])->name('absences.create');
     Route::post('/absences', [AbsenceController2::class, 'store'])->name('absences.store');
 });
+
+
+Route::get('privacity',[lawController::class,'privacity'])->name('privacity');
+Route::get('terms',[lawController::class,'terms'])->name('terms');

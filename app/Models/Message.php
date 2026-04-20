@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\User;
 
 class Message extends Model
 {
-    protected $primaryKey = 'id_message';
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class, 'user_id', 'id');
-    // }
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class);
+    }
 }

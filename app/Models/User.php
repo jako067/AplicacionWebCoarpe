@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -57,5 +58,10 @@ class User extends Authenticatable
     public function absences()
     {
         return $this->hasMany(Absence::class);
+    }
+    public function messages() : BelongsToMany {
+
+    return $this->belongsToMany(Message::class);
+
     }
 }
