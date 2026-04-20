@@ -11,6 +11,6 @@ class DailyWork extends Model
         'reporte',
         'date',
         'evaluation',
-        'Incidences',
+        'incidences',
     ];
 }
