@@ -24,7 +24,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('tasks.index') }}">
-                        <i class="bi bi-check2-square"></i> Tareas
+                        <i class="bi bi-check2-square"></i> Jornada
                     </a>
                 </li>
                 <li class="nav-item">
@@ -35,6 +35,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('users.index') }}">
                         <i class="bi bi-people"></i> Usuarios
+                    </a>
+                </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="{{ route('daily_work.index') }}">
+                        <i class="bi bi-people"></i> Daily
                     </a>
                 </li>
             </ul>

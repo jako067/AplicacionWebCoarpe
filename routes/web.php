@@ -14,6 +14,8 @@ use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\DailyWork;
+use App\Http\Controllers\DailyWorkController;
 
 //se puede usar ya el middleware ('is_admin');
 
@@ -44,3 +46,5 @@ Route::prefix('users/{user}')->group(function () {
 
 Route::get('privacity',[lawController::class,'privacity'])->name('privacity');
 Route::get('terms',[lawController::class,'terms'])->name('terms');
+
+Route::resource('daily_work',DailyWorkController::class);
