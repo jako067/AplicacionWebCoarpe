@@ -12,6 +12,7 @@ use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\DailyWorkController;
 
 //se puede usar ya el middleware ('is_admin');
 
@@ -38,3 +39,5 @@ Route::prefix('users/{user}')->group(function () {
     Route::get('/absences/create', [AbsenceController2::class, 'create'])->name('absences.create');
     Route::post('/absences', [AbsenceController2::class, 'store'])->name('absences.store');
 });
+
+

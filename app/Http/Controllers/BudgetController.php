@@ -117,3 +117,60 @@ class BudgetController extends Controller
     }
 
 }
+
+// SOLUCION PARA CALCULAR EL PRECIO FINAL CON MANO+MATERIAL
+// CAMBIAR EL STORE POR ESTE EL DE ARA SOL GUARDA MANO OBRA
+//  public function store(BudgetRequest $request)
+//     {
+//         $totalNormal = $request->input('workers_quantity') * $request->input('hours_quantity') * $request->input('price_x_hour');
+//         $totalStaff = $request->input('staff_quantity') * $request->input('hours_quantity') * $request->input('staff_price');
+//         $manoDeObra = $totalNormal + $totalStaff;
+
+//         $budget = new Budget();
+//         $budget->workers_quantity = $request->input('workers_quantity');
+//         $budget->hours_quantity = $request->input('hours_quantity');
+//         $budget->price_x_hour = $request->input('price_x_hour');
+//         $budget->staff_quantity = $request->input('staff_quantity');
+//         $budget->staff_price = $request->input('staff_price');
+
+//         //  materiales
+//          $totalMateriales = 0;
+
+//         // Si se crea material nuevo
+//         if ($request->input('crear_material_nuevo') == '1') {
+//             $material = new Material();
+//             $material->material_name = $request->input('new_material_name');
+//             $material->supplier_contact = $request->input('new_supplier_contact');
+//             $material->unity_price = $request->input('new_unity_price');
+//             $material->quantity = $request->input('new_stock_quantity');
+//             $material->save();
+
+//             $cantidadUsada = $request->input('quantity_used_in_budget');
+//             $totalMateriales += ($material->unity_price * $cantidadUsada);
+
+//             // GUARDAR MATERIAL NOU
+//             $budget->final_price = $manoDeObra + $totalMateriales;
+//             $budget->save();
+
+//             $budget->materials()->attach($material->material_id, ['quantity' => $cantidadUsada]);
+//         }
+//         // Si se usa material existente
+//         elseif ($request->filled('existing_material_id') && $request->filled('existing_material_quantity')) {
+//             $materialExistente = Material::find($request->input('existing_material_id'));
+//             $cantidadUsada = $request->input('existing_material_quantity');
+//             $totalMateriales += ($materialExistente->unity_price * $cantidadUsada);
+
+//                  //GURDAR BD
+//             $budget->final_price = $manoDeObra + $totalMateriales;
+//             $budget->save();
+
+//             $budget->materials()->attach($request->input('existing_material_id'), ['quantity' => $cantidadUsada]);
+//         }
+//         // SOLO MANO
+//         else {
+//             $budget->final_price = $manoDeObra;
+//             $budget->save();
+//         }
+
+//         return redirect()->route('budgets.index');
+//     }

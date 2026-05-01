@@ -3,6 +3,8 @@
 @section('title', 'Enviar Mensaje')
 
 @section('content')
+
+{{-- YA NO SE USA ESTA VISTA  --}}
     <h2>Enviar Mensaje al Administrador</h2>
 
     <form action="{{ route('messages.store') }}" method="POST" enctype="multipart/form-data">

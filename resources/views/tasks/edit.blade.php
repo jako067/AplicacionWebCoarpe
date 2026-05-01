@@ -3,38 +3,104 @@
 @section('title', 'Editar Jornada')
 
 @section('content')
-    <h2>Editar Jornada {{ $task->id_task }}</h2>
+<div class="container-fluid max-w-4xl">
 
-    <form action="{{ route('tasks.update', $task->id_task) }}" method="POST">
-        @csrf
-        @method('PUT')
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="d-flex align-items-center">
+            <a href="{{ route('tasks.index') }}" class="btn btn-sm btn-outline-secondary me-3 shadow-sm" title="Volver al historial">
+                <i class="bi bi-arrow-left"></i> Volver
+            </a>
+            <h2 class="fw-bold mb-0 text-dark">Editar Jornada <span class="text-verde-oscuro">#{{ $task->id_task }}</span></h2>
+        </div>
+    </div>
 
-        <label for="task_date">Fecha:</label><br>
-        <input type="date" name="task_date" id="task_date" value="{{ old('task_date', $task->task_date) }}">
-        @error('task_date') <span>{{ $message }}</span> @enderror
-        <br><br>
+    <div class="card border-0 shadow-sm p-4">
 
-        <label for="entry_time">Hora de Entrada:</label><br>
-        <input type="time" name="entry_time" id="entry_time" value="{{ old('entry_time', $task->entry_time) }}">
-        @error('entry_time') <span>{{ $message }}</span> @enderror
-        <br><br>
+        <form action="{{ route('tasks.update', $task->id_task) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-        <label for="exit_time">Hora de Salida:</label><br>
-        <input type="time" name="exit_time" id="exit_time" value="{{ old('exit_time', $task->exit_time) }}">
-        @error('exit_time') <span>{{ $message }}</span> @enderror
-        <br><br>
+            <div class="mb-4 pb-4 border-bottom">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-clock-history fs-5 me-2 text-verde-oscuro"></i>
+                    <h5 class="fw-bold mb-0 text-dark">Modificar Horario Base</h5>
+                </div>
 
-        <label for="break_minutes">Minutos de Descanso:</label><br>
-        <input type="number" name="break_minutes" id="break_minutes" min="0" value="{{ old('break_minutes', $task->break_minutes) }}">
-        @error('break_minutes') <span>{{ $message }}</span> @enderror
-        <br><br>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <label for="task_date" class="form-label text-muted fw-semibold small mb-1">Fecha <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control @error('task_date') is-invalid @enderror" name="task_date" id="task_date" value="{{ old('task_date', $task->task_date) }}">
+                        @error('task_date')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-        <label for="extra_hours">Horas Extra (marcadas por el capataz):</label><br>
-        <input type="number" step="0.25" name="extra_hours" id="extra_hours" min="0" value="{{ old('extra_hours', $task->extra_hours) }}">
-        @error('extra_hours') <span>{{ $message }}</span> @enderror
-        <br><br>
+                    <div class="col-md-4">
+                        <label for="entry_time" class="form-label text-muted fw-semibold small mb-1">Hora de Entrada <span class="text-danger">*</span></label>
+                        <input type="time" class="form-control @error('entry_time') is-invalid @enderror" name="entry_time" id="entry_time" value="{{ old('entry_time', $task->entry_time) }}">
+                        @error('entry_time')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-        <button type="submit">Recalcular y Actualizar</button>
-        <a href="{{ route('tasks.index') }}">Volver</a>
-    </form>
+                    <div class="col-md-4">
+                        <label for="exit_time" class="form-label text-muted fw-semibold small mb-1">Hora de Salida <span class="text-danger">*</span></label>
+                        <input type="time" class="form-control @error('exit_time') is-invalid @enderror" name="exit_time" id="exit_time" value="{{ old('exit_time', $task->exit_time) }}">
+                        @error('exit_time')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <i class="bi bi-plus-circle-fill fs-5 me-2 text-verde-oscuro"></i>
+                    <h5 class="fw-bold mb-0 text-dark">Ajustar Descansos y Horas Extra</h5>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label for="break_minutes" class="form-label text-muted fw-semibold small mb-1">Minutos de Descanso</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="bi bi-cup-hot"></i></span>
+                            <input type="number" class="form-control @error('break_minutes') is-invalid @enderror" name="break_minutes" id="break_minutes" min="0" value="{{ old('break_minutes', $task->break_minutes) }}">
+                            <span class="input-group-text bg-light text-muted">min</span>
+                            @error('break_minutes')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="extra_hours" class="form-label text-muted fw-semibold small mb-1">Horas Extra <span class="fw-normal text-black-50">(Validadas por capataz)</span></label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="bi bi-stopwatch"></i></span>
+                            <input type="number" step="0.25" class="form-control @error('extra_hours') is-invalid @enderror" name="extra_hours" id="extra_hours" min="0" value="{{ old('extra_hours', $task->extra_hours) }}">
+                            <span class="input-group-text bg-light text-muted">h</span>
+                            @error('extra_hours')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 text-muted opacity-25">
+
+            <div class="alert alert-info bg-light border-info border-opacity-25 text-dark d-flex align-items-center mb-4" role="alert">
+                <i class="bi bi-info-circle-fill text-info fs-5 me-3"></i>
+                <small>Al guardar, el sistema <strong>recalculará automáticamente</strong> el total de horas trabajadas para esta jornada.</small>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{{ route('tasks.index') }}" class="btn btn-light border px-4 shadow-sm">Cancelar</a>
+                <button type="submit" class="btn btn-verde-oscuro fw-semibold px-4 shadow-sm">
+                    <i class="bi bi-calculator me-2"></i> Recalcular y Actualizar
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
 @endsection
