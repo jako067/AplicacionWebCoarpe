@@ -22,6 +22,7 @@ class MessageRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type'     => 'required',
             'subject'  => 'required|string|max:255',
             'body'     => 'required|string',
             'document' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
@@ -31,6 +32,7 @@ class MessageRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'type.required'    => 'Debes seleccionar el tipo de comunicación.',
             'subject.required' => 'Debes indicar el asunto del mensaje.',
             'body.required'    => 'Debes escribir el contenido del mensaje.',
             'document.mimes'   => 'El documento debe ser PDF, JPG o PNG.',

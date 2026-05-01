@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->id('id_message');
+        Schema::create('work_groups', function (Blueprint $table) {
+            $table->id('id_work_group');
+            $table->string('name');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->enum('type', ['justificante', 'aviso', 'notificacion'])->default('aviso');
-            $table->string('subject', 100);
-            $table->text('body');
-            $table->string('document')->nullable();
-            $table->boolean('readed')->default(false);
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('work_groups');
     }
 };

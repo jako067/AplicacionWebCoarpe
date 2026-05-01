@@ -5,8 +5,7 @@
 @section('content')
     <h2>Trámites y Mensajes</h2>
 
-    {{-- APARTADO 1: Mensajes enviados al administrador --}}
-    <h3>Mis Mensajes al Administrador</h3>
+    <h3>Comunicaciones al Administrador</h3>
 
     <a href="{{ route('messages.create') }}">Enviar Nuevo Mensaje</a>
     <br><br>
@@ -14,7 +13,7 @@
     <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>Tipo</th>
                 <th>Asunto</th>
                 <th>Documento</th>
                 <th>Fecha</th>
@@ -24,7 +23,7 @@
         <tbody>
             @foreach($messages as $message)
                 <tr>
-                    <td>{{ $message->id_message }}</td>
+                    <td>{{ $message->type === 'justificante' ? 'Justificante de falta' : 'Aviso de imprevisto' }}</td>
                     <td>{{ $message->subject }}</td>
                     <td>{{ $message->document ? 'Sí' : 'No' }}</td>
                     <td>{{ $message->created_at }}</td>
@@ -38,6 +37,29 @@
                             <button type="submit">Borrar</button>
                         </form>
                     </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h3>Notificaciones del Capataz</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Mensaje</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($notices as $notice)
+                <tr>
+                    <td>{{ $notice->subject }}</td>
+                    <td>{{ $notice->body }}</td>
+                    <td>{{ $notice->created_at }}</td>
                 </tr>
             @endforeach
         </tbody>

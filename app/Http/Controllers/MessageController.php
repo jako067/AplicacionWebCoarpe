@@ -13,8 +13,16 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
-        return view('messages.index', compact('messages'));
+        $messages = Message::where('user_id', auth()->id())
+                            ->whereIn('type', ['justificante', 'aviso'])
+                            ->latest()
+                            ->get();
+
+        $notices  = Message::where('type', 'notificacion')
+                            ->latest()
+                            ->get();
+
+        return view('messages.index', compact('messages', 'notices'));
     }
 
     /**
@@ -36,6 +44,8 @@ class MessageController extends Controller
         }
 
         $message = new Message();
+        $message->user_id  = auth()->id();
+        $message->type     = $request->input('type');
         $message->subject  = $request->input('subject');
         $message->body     = $request->input('body');
         $message->document = $documentPath;
@@ -70,6 +80,7 @@ class MessageController extends Controller
             $message->document = $documentPath;
         }
 
+        $message->type    = $request->input('type');
         $message->subject = $request->input('subject');
         $message->body    = $request->input('body');
         $message->save();
@@ -88,3 +99,4 @@ class MessageController extends Controller
         return redirect()->route('messages.index');
     }
 }
+

@@ -9,6 +9,14 @@
         @csrf
         @method('PUT')
 
+        <label for="type">Tipo de comunicación:</label><br>
+        <select name="type" id="type">
+            <option value="aviso" {{ old('type', $message->type) == 'aviso' ? 'selected' : '' }}>Aviso de imprevisto</option>
+            <option value="justificante" {{ old('type', $message->type) == 'justificante' ? 'selected' : '' }}>Justificante de falta</option>
+        </select>
+        @error('type') <span>{{ $message }}</span> @enderror
+        <br><br>
+
         <label for="subject">Asunto:</label><br>
         <input type="text" name="subject" id="subject" value="{{ old('subject', $message->subject) }}">
         @error('subject') <span>{{ $message }}</span> @enderror
