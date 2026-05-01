@@ -6,19 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class MaterialRequest extends FormRequest
 {
-<<<<<<< HEAD
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-=======
     public function authorize()
->>>>>>> liam
     {
         return true;
     }
 
-<<<<<<< HEAD
     /**
      * Get the validation rules that apply to the request.
      *
@@ -48,16 +40,6 @@ class MaterialRequest extends FormRequest
             'quantity.max' => 'La cantidad no puede superar las 10,000 unidades.',
 
             'supplier_contact.max' => 'El contacto del proveedor no puede superar los 500 caracteres.',
-=======
-    public function rules()
-    {
-        return [
-            'Material_name' => 'required|string|max:255',
-            'Unity_price' => 'required|numeric',
-            'Quantity' => 'required|integer',
-            'Supplier' => 'required|string|max:255',
-            'Contact' => 'required|string|max:255',
->>>>>>> liam
         ];
     }
 }

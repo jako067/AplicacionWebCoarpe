@@ -49,8 +49,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function isAdmin() : bool {
+    public function isAdmin(): bool
+    {
 
         return $this->rol === 'admin';
+    }
+    public function absences()
+    {
+        return $this->hasMany(Absence::class);
     }
 }

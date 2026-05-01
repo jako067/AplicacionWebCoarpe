@@ -1,10 +1,9 @@
 <?php
 
+use App\Http\Middleware\IsAdminMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use App\Http\Middleware\IsAdminMiddleware;
-
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
