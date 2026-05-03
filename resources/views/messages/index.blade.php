@@ -29,7 +29,6 @@
                     <td>{{ $message->created_at }}</td>
                     <td>
                         <a href="{{ route('messages.show', $message->id_message) }}">Ver Detalle</a> |
-                        <a href="{{ route('messages.edit', $message->id_message) }}">Editar</a> |
 
                         <form action="{{ route('messages.destroy', $message->id_message) }}" method="POST" style="display:inline;">
                             @csrf

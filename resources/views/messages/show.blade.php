@@ -5,8 +5,8 @@
 @section('content')
     <h2>Mensaje #{{ $message->id_message }}</h2>
 
-    <h3>Datos del Mensaje:</h3>
     <ul>
+        <li><strong>Tipo:</strong> {{ $message->type === 'justificante' ? 'Justificante de falta' : 'Aviso de imprevisto' }}</li>
         <li><strong>Asunto:</strong> {{ $message->subject }}</li>
         <li><strong>Mensaje:</strong> {{ $message->body }}</li>
         <li><strong>Documento adjunto:</strong>
@@ -20,11 +20,6 @@
     </ul>
 
     <br>
-    <a href="{{ route('messages.edit', $message->id_message) }}">
-        <button>Editar</button>
-    </a>
-
-    <a href="{{ route('messages.index') }}">
-        <button>Volver</button>
-    </a>
+    <a href="{{ route('messages.index') }}">Volver</a>
 @endsection
+
