@@ -3,33 +3,71 @@
 @section('title', 'Detalle del Material')
 
 @section('content')
+<div class="container-fluid max-w-4xl">
 
-<div class="container mt-5">
-    <div class="card shadow-sm p-4">
-        <h2 class="mb-4 text-center">Detalle del Material</h2>
-
-        <h5 class="mb-3 text-primary">
-            {{ $material->material_name }}
-        </h5>
-
-        <ul class="list-group mb-4">
-            <li class="list-group-item"><strong>ID:</strong> {{ $material->material_id }}</li>
-            <li class="list-group-item"><strong>Nombre:</strong> {{ $material->material_name }}</li>
-            <li class="list-group-item"><strong>Precio Unitario:</strong> {{ $material->unity_price }} €</li>
-            <li class="list-group-item"><strong>Cantidad Disponible:</strong> {{ $material->quantity }} unidades</li>
-            <li class="list-group-item"><strong>Proveedor:</strong> {{ $material->supplier_contact }}</li>
-        </ul>
-
-        <div class="d-flex gap-2">
-            <a href="{{ route('materials.edit', $material->material_id) }}" class="btn btn-primary">
-                Editar
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="d-flex align-items-center">
+            <a href="{{ route('materials.index') }}" class="btn btn-sm btn-outline-secondary me-3 shadow-sm" title="Volver al catálogo">
+                <i class="bi bi-arrow-left"></i> Volver
             </a>
-
-            <a href="{{ route('materials.index') }}" class="btn btn-outline-secondary">
-                Volver
-            </a>
+            <h2 class="fw-bold mb-0 text-dark">Ficha del Material</h2>
         </div>
+
+        <a href="{{ route('materials.edit', $material->material_id) }}" class="btn btn-sm btn-outline-primary shadow-sm">
+            <i class="bi bi-pencil me-1"></i> Editar Material
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm overflow-hidden">
+
+        <div class="card-header bg-white border-bottom p-4">
+            <div class="d-flex align-items-start gap-3">
+                <div class="icon-circle-sm bg-light text-secondary rounded shadow-sm d-flex align-items-center justify-content-center flex-shrink-0" style="width: 50px; height: 50px;">
+                    <i class="bi bi-box-seam fs-3"></i>
+                </div>
+                <div>
+                    <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary border-opacity-25 mb-2">
+                        Referencia #{{ $material->material_id }}
+                    </span>
+                    <h4 class="fw-bold text-dark mb-0">{{ $material->material_name }}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-4 bg-light bg-opacity-50">
+            <div class="row g-4">
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="bg-white p-3 border rounded-3 h-100">
+                        <p class="text-muted fw-semibold small mb-1 text-uppercase">Precio Unitario</p>
+                        <h4 class="fw-bold text-dark mb-0">
+                            {{ number_format($material->unity_price, 2) }} €
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <div class="bg-white p-3 border rounded-3 h-100">
+                        <p class="text-muted fw-semibold small mb-1 text-uppercase">Stock Disponible</p>
+                        <h4 class="fw-bold mb-0 {{ $material->quantity > 0 ? 'text-success' : 'text-danger' }}">
+                            {{ $material->quantity }} <span class="fs-6 text-muted fw-normal">unidades</span>
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <div class="bg-white p-3 border rounded-3 h-100">
+                        <p class="text-muted fw-semibold small mb-1 text-uppercase">Proveedor / Contacto</p>
+                        <div class="d-flex align-items-center mt-1">
+                            <i class="bi bi-truck fs-4 text-secondary me-2"></i>
+                            <span class="fw-medium text-dark">{{ $material->supplier_contact }}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 </div>
-
 @endsection

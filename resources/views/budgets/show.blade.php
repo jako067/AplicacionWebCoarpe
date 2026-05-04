@@ -3,68 +3,124 @@
 @section('title', 'Detalle del Presupuesto')
 
 @section('content')
+<div class="container-fluid max-w-4xl">
 
-    <div class="container mt-5">
-        <div class="card shadow-sm p-4">
-            <h2 class="mb-4 text-center">Presupuesto #{{ $budget->id_budget }}</h2>
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div class="d-flex align-items-center">
+            <a href="{{ route('budgets.index') }}" class="btn btn-sm btn-outline-secondary me-3 shadow-sm" title="Volver al listado">
+                <i class="bi bi-arrow-left"></i> Volver
+            </a>
+            <h2 class="fw-bold mb-0 text-dark">
+                Presupuesto <span class="text-verde-oscuro">#{{ $budget->id_budget }}</span>
+            </h2>
+        </div>
 
-            <div class="mb-4">
-                <h5 class="section-title">Mano de Obra</h5>
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Trabajadores:</strong> {{ $budget->workers_quantity }}</li>
-                    <li class="list-group-item"><strong>Horas:</strong> {{ $budget->hours_quantity }} h</li>
-                    <li class="list-group-item"><strong>€/Hora:</strong> {{ $budget->price_x_hour }} €</li>
-                    <li class="list-group-item fw-bold text-primary">
-                        Total: {{ $budget->final_price }} €
-                    </li>
-                </ul>
-            </div>
+        <a href="{{ route('budgets.edit', $budget->id_budget) }}" class="btn btn-sm btn-outline-primary shadow-sm">
+            <i class="bi bi-pencil me-1"></i> Editar
+        </a>
+    </div>
 
-            <div class="mb-4">
-                <h5 class="section-title">Materiales</h5>
+    <div class="card border-0 shadow-sm overflow-hidden mb-4">
 
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Material</th>
-                                <th>Precio Ud.</th>
-                                <th>Cantidad</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($budget->materials as $material)
-                                <tr>
-                                    <td>{{ $material->material_name }}</td>
-                                    <td>{{ $material->unity_price }} €</td>
-                                    <td>{{ $material->pivot->quantity }}</td>
-                                    <td class="fw-bold">
-                                        {{ $material->unity_price * $material->pivot->quantity }} €
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4" class="text-center text-muted">
-                                        No hay materiales asignados
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+        <div class="card-header bg-white border-bottom p-4">
+            <h5 class="fw-bold text-dark mb-0">
+                <i class="bi bi-people-fill fs-5 me-2 text-verde-oscuro"></i> Datos de Mano de Obra
+            </h5>
+        </div>
+
+        <div class="card-body p-4 bg-light bg-opacity-50">
+            <div class="row g-4">
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="bg-white p-3 border rounded-3 h-100 shadow-sm">
+                        <p class="text-muted fw-semibold small mb-1 text-uppercase">Nº Trabajadores</p>
+                        <h4 class="fw-bold text-dark mb-0">
+                            {{ $budget->workers_quantity }} <span class="fs-6 text-muted fw-normal">peones</span>
+                        </h4>
+                    </div>
                 </div>
-            </div>
 
-            <div class="d-flex gap-2">
-                <a href="{{ route('budgets.edit', $budget->id_budget) }}" class="btn btn-primary">
-                    Editar
-                </a>
+                <div class="col-sm-6 col-md-3">
+                    <div class="bg-white p-3 border rounded-3 h-100 shadow-sm">
+                        <p class="text-muted fw-semibold small mb-1 text-uppercase">Horas Estimadas</p>
+                        <h4 class="fw-bold text-dark mb-0">
+                            {{ $budget->hours_quantity }} <span class="fs-6 text-muted fw-normal">h</span>
+                        </h4>
+                    </div>
+                </div>
 
-                <a href="{{ route('budgets.index') }}" class="btn btn-outline-secondary">
-                    Volver
-                </a>
+                <div class="col-sm-6 col-md-3">
+                    <div class="bg-white p-3 border rounded-3 h-100 shadow-sm">
+                        <p class="text-muted fw-semibold small mb-1 text-uppercase">Precio / Hora</p>
+                        <h4 class="fw-bold text-dark mb-0">
+                            {{ number_format($budget->price_x_hour, 2) }} €
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="bg-white p-3 border rounded-3 border-success border-opacity-50 h-100 shadow-sm">
+                        <p class="text-success fw-bold small mb-1 text-uppercase">Coste Total (M.O.)</p>
+                        <h4 class="fw-bold text-success mb-0">
+                            {{ number_format($budget->final_price, 2) }} €
+                        </h4>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
+    <div class="card border-0 shadow-sm overflow-hidden">
+
+        <div class="card-header bg-white border-bottom p-4 d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold text-dark mb-0">
+                <i class="bi bi-bricks fs-5 me-2 text-primary"></i> Materiales Asignados
+            </h5>
+            <span class="badge bg-secondary rounded-pill">{{ $budget->materials->count() }} en la lista</span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-muted small fw-semibold ps-4">Nombre del Material</th>
+                        <th class="text-muted small fw-semibold text-end">Precio Ud.</th>
+                        <th class="text-muted small fw-semibold text-center">Cantidad Usada</th>
+                        <th class="text-muted small fw-semibold text-end pe-4">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($budget->materials as $material)
+                        <tr>
+                            <td class="ps-4 fw-medium text-dark">
+                                <i class="bi bi-box-seam text-secondary me-2"></i> {{ $material->material_name }}
+                            </td>
+                            <td class="text-end text-muted">
+                                {{ number_format($material->unity_price, 2) }} €
+                            </td>
+                            <td class="text-center">
+                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 px-2 py-1">
+                                    {{ $material->pivot->quantity }} ud.
+                                </span>
+                            </td>
+                            <td class="text-end pe-4 fw-bold text-dark">
+                                {{ number_format($material->unity_price * $material->pivot->quantity, 2) }} €
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center py-5 text-muted">
+                                <i class="bi bi-clipboard-x fs-2 d-block mb-2 opacity-50"></i>
+                                <p class="mb-0">No hay materiales asignados a este presupuesto todavía.</p>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
 @endsection

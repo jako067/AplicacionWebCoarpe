@@ -1,11 +1,15 @@
-<footer class="bg-dark text-white text-center py-3 mt-5">
-    <div class="container">
-        <small>
-            © {{ date('Y') }} Coarpe
-            |
-            <a href="{{ route('terms') }}" class="text-white text-decoration-none">Términos</a>
-            |
-            <a href="{{ route('privacity') }}" class="text-white text-decoration-none">Privacidad</a>
-        </small>
+<footer class="py-4 mt-auto border-top bg-light">
+    <div class="container-fluid px-4">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between small">
+
+            <div class="text-muted fw-medium mb-2 mb-md-0">
+                &copy; {{ date('Y') }} COARPE. Todos los derechos reservados.
+            </div>
+
+            <div class="text-muted">
+                <span class="fw-semibold">Aplicación Web Coarpe</span> &middot; Sistema de Gestión Interna
+            </div>
+
+        </div>
     </div>
 </footer>

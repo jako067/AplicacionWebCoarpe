@@ -1,25 +1,9 @@
-
-@import './main.css';
-@import './layout.css';
-@import './header.css';
-@import './table.css';
-@import './absences/create.css';
-@import './absences/index.css';
-@import './auth/login.css';
-@import './auth/signup.css';
-@import './budgets/create.css';
-@import './budgets/index.css';
-@import './daily_work/index.css';
-@import './daily_work/show.css';
-
-
-/* CSS Global */
-:root {
-    --color-primary: #1e293b;
-    --color-secondary: #334155;
-    --color-accent: #f59e0b;
-    --color-text: #f8fafc;
-    --color-hover: #475569;
+body {
+    font-family: Arial, sans-serif;
+    background: #f8f8f8;
+    color: #222;
+    margin: 0;
+    padding: 0;
 }
 
 .btn-primary-custom {
