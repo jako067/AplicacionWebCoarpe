@@ -16,6 +16,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\DailyWork;
 use App\Http\Controllers\DailyWorkController;
+use App\Http\Controllers\GroupController;
 
 //se puede usar ya el middleware ('is_admin');
 
@@ -43,8 +44,9 @@ Route::prefix('users/{user}')->group(function () {
     Route::post('/absences', [AbsenceController2::class, 'store'])->name('absences.store');
 });
 
-
 Route::get('privacity',[lawController::class,'privacity'])->name('privacity');
 Route::get('terms',[lawController::class,'terms'])->name('terms');
 
 Route::resource('daily_work',DailyWorkController::class);
+
+Route::resource('groups', GroupController::class);

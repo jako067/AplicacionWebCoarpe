@@ -37,9 +37,14 @@
                         <i class="bi bi-people"></i> Usuarios
                     </a>
                 </li>
-                    <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('daily_work.index') }}">
                         <i class="bi bi-people"></i> Daily
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('groups.index') }}">
+                        <i class="bi bi-people"></i> Groups
                     </a>
                 </li>
             </ul>
