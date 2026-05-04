@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layout.layout')
 
 @section('content')
 <h1>Editar Daily Work</h1>

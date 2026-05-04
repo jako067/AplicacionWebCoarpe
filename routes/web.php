@@ -13,6 +13,7 @@ use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\DailyWorkController;
 
 //se puede usar ya el middleware ('is_admin');
 
@@ -34,6 +35,7 @@ Route::resource('tasks', TaskController::class)->middleware('auth');
 Route::resource('messages', MessageController::class)->only(['index', 'create', 'store', 'show', 'destroy'])->middleware('auth');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::resource('daily_work', DailyWorkController::class);
 
 
 Route::prefix('users/{user}')->group(function () {
