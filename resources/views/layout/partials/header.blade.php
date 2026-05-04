@@ -10,7 +10,7 @@
         <a class="navbar-brand d-flex align-items-center text-white m-0" href="{{ route('index') }}">
             <div class="header-logo-box me-2 shadow-sm">C</div>
             <h1 class="h5 mb-0 fw-bold d-none d-sm-block">COARPE</h1>
-            <h1 class="h5 mb-0 fw-bold d-block d-sm-none">COARPE</h1> </a>
+            <h1 class="h5 mb-0 fw-bold d-block d-sm-none">COARPE</h1> </a>  
 
         @auth
             <div class="ms-auto d-flex align-items-center text-white text-end">
@@ -26,6 +26,7 @@
             <div class="ms-auto">
                 <a href="{{ route('login.form') }}" class="btn btn-sm btn-outline-light me-2">Entrar</a>
                 <a href="{{ route('signup.form') }}" class="btn btn-sm btn-signup-header">Registro</a>
+
             </div>
         @endauth
     </div>
