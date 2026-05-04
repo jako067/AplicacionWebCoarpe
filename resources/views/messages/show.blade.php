@@ -1,25 +1,25 @@
 @extends('layout.layout')
 
-@section('title', 'Detalle del Mensaje')
+@section('title', __('messages.title_show'))
 
 @section('content')
-    <h2>Mensaje #{{ $message->id_message }}</h2>
+    <h2>{{ __('messages.heading_show', ['number' => $message->id_message]) }}</h2>
 
     <ul>
-        <li><strong>Tipo:</strong> {{ $message->type === 'justificante' ? 'Justificante de falta' : 'Aviso de imprevisto' }}</li>
-        <li><strong>Asunto:</strong> {{ $message->subject }}</li>
-        <li><strong>Mensaje:</strong> {{ $message->body }}</li>
-        <li><strong>Documento adjunto:</strong>
+        <li><strong>{{ __('messages.detail_type') }}:</strong> {{ $message->type === 'justificante' ? __('messages.type_justificante') : __('messages.type_aviso') }}</li>
+        <li><strong>{{ __('messages.detail_subject') }}:</strong> {{ $message->subject }}</li>
+        <li><strong>{{ __('messages.detail_body') }}:</strong> {{ $message->body }}</li>
+        <li><strong>{{ __('messages.detail_document') }}:</strong>
             @if($message->document)
-                <a href="{{ asset('storage/' . $message->document) }}" target="_blank">Ver documento</a>
+                <a href="{{ asset('storage/' . $message->document) }}" target="_blank">{{ __('messages.view_document') }}</a>
             @else
-                Sin documento adjunto
+                {{ __('messages.no_document') }}
             @endif
         </li>
-        <li><strong>Enviado el:</strong> {{ $message->created_at }}</li>
+        <li><strong>{{ __('messages.detail_sent') }}:</strong> {{ $message->created_at }}</li>
     </ul>
 
     <br>
-    <a href="{{ route('messages.index') }}">Volver</a>
+    <a href="{{ route('messages.index') }}">{{ __('messages.back_button') }}</a>
 @endsection
 

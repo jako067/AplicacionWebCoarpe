@@ -1,29 +1,29 @@
 @extends('layout.layout')
 
-@section('title', 'Listado de Tareas')
+@section('title', __('tasks.title_list'))
 
 @section('content')
-    <h2>Jornadas de Trabajo</h2>
+    <h2>{{ __('tasks.heading') }}</h2>
 
     <fieldset style="margin-bottom: 20px;">
-        <legend>Total Horas Trabajadas</legend>
-        <strong>{{ $totalHours }} h</strong> acumuladas en total (incluyendo horas extra).
+        <legend>{{ __('tasks.legend_total_hours') }}</legend>
+        <strong>{{ $totalHours }} h</strong> {{ __('tasks.total_hours_text') }}.
     </fieldset>
 
-    <a href="{{ route('tasks.create') }}">Registrar Nueva Jornada</a>
+    <a href="{{ route('tasks.create') }}">{{ __('tasks.register_new') }}</a>
     <br><br>
 
     <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Fecha</th>
-                <th>Hora Entrada</th>
-                <th>Hora Salida</th>
-                <th>Descanso (min)</th>
-                <th>Horas Extra</th>
-                <th>Total Horas</th>
-                <th>Acciones</th>
+                <th>{{ __('general.id') }}</th>
+                <th>{{ __('tasks.col_date') }}</th>
+                <th>{{ __('tasks.col_entry') }}</th>
+                <th>{{ __('tasks.col_exit') }}</th>
+                <th>{{ __('tasks.col_break') }}</th>
+                <th>{{ __('tasks.col_extra') }}</th>
+                <th>{{ __('tasks.col_total') }}</th>
+                <th>{{ __('general.actions') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -37,13 +37,13 @@
                     <td>{{ $task->extra_hours }} h</td>
                     <td><strong>{{ $task->total_hours }} h</strong></td>
                     <td>
-                        <a href="{{ route('tasks.show', $task->id_task) }}">Ver Detalle</a> |
-                        <a href="{{ route('tasks.edit', $task->id_task) }}">Editar</a> |
+                        <a href="{{ route('tasks.show', $task->id_task) }}">{{ __('tasks.view_detail') }}</a> |
+                        <a href="{{ route('tasks.edit', $task->id_task) }}">{{ __('general.edit') }}</a> |
 
                         <form action="{{ route('tasks.destroy', $task->id_task) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Borrar</button>
+                            <button type="submit">{{ __('general.delete') }}</button>
                         </form>
                     </td>
                 </tr>

@@ -1,4 +1,4 @@
 <footer>
     <hr>
-    <p> Aplicación Web Coarpe</p>
+    <p>{{ __('general.footer_text') }}</p>
 </footer>

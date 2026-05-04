@@ -2,10 +2,10 @@
     <p>{{ $user->name }}</p>
 
     <a href="{{ route('absences.index', $user->id) }}">
-        Ver faltas
+        {{ __('absences.see_absences') }}
     </a>
 
     <a href="{{ route('absences.create', $user->id) }}">
-        Añadir falta
+        {{ __('absences.add_absence') }}
     </a>
 @endforeach

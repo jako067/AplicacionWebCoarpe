@@ -1,27 +1,27 @@
 @extends('layout.layout')
 
-@section('title', 'Detalle del Presupuesto')
+@section('title', __('budgets.title_show'))
 
 @section('content')
-    <h2>Presupuesto #{{ $budget->id_budget }}</h2>
+    <h2>{{ __('budgets.heading_show', ['number' => $budget->id_budget]) }}</h2>
 
-    <h3>Datos de Mano de Obra:</h3>
+    <h3>{{ __('budgets.heading_labor') }}:</h3>
     <ul>
-        <li><strong>Nº de Trabajadores:</strong> {{ $budget->workers_quantity }}</li>
-        <li><strong>Horas Estimadas:</strong> {{ $budget->hours_quantity }} h</li>
-        <li><strong>Precio por Hora:</strong> {{ $budget->price_x_hour }} €</li>
-        <li><strong >Coste Total Calculado: {{ $budget->final_price }} €</strong></li>
+        <li><strong>{{ __('budgets.detail_workers') }}:</strong> {{ $budget->workers_quantity }}</li>
+        <li><strong>{{ __('budgets.detail_hours') }}:</strong> {{ $budget->hours_quantity }} h</li>
+        <li><strong>{{ __('budgets.detail_price_hour') }}:</strong> {{ $budget->price_x_hour }} €</li>
+        <li><strong>{{ __('budgets.detail_total_cost') }}: {{ $budget->final_price }} €</strong></li>
     </ul>
 
     <hr>
-    <h3>Materiales Asignados:</h3>
+    <h3>{{ __('budgets.heading_materials') }}:</h3>
    <table border="1">
         <thead>
             <tr>
-                <th>Nombre del Material</th>
-                <th>Precio Ud.</th>
-                <th>Cantidad Usada</th>
-                <th>Subtotal</th>
+                <th>{{ __('budgets.col_material_name') }}</th>
+                <th>{{ __('materials.col_unit_price') }}</th>
+                <th>{{ __('budgets.col_qty_used') }}</th>
+                <th>{{ __('budgets.col_subtotal') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">No hay materiales asignados a este presupuesto todavía.</td>
+                    <td colspan="4">{{ __('budgets.no_materials') }}</td>
                 </tr>
             @endforelse
         </tbody>
@@ -42,10 +42,10 @@
 
     <br>
     <a href="{{ route('budgets.edit', $budget->id_budget) }}">
-        <button>Editar </button>
+        <button>{{ __('budgets.edit_button') }}</button>
     </a>
 
     <a href="{{ route('budgets.index') }}">
-        <button>Volver</button>
+        <button>{{ __('budgets.back_button') }}</button>
     </a>
 @endsection

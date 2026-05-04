@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('title','Perfil')
+@section('title', __('users.title_profile'))
 @section('content')
 
 <br>

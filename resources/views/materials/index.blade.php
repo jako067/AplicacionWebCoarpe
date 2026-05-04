@@ -1,22 +1,22 @@
 @extends('layout.layout')
 
-@section('title', 'Listado de Materiales')
+@section('title', __('materials.title_list'))
 
 @section('content')
-    <h2>Materiales Disponibles</h2>
+    <h2>{{ __('materials.heading') }}</h2>
 
-    <a href="{{ route('materials.create') }}">Añadir Nuevo Material</a>
+    <a href="{{ route('materials.create') }}">{{ __('materials.add_new') }}</a>
     <br><br>
 
     <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Precio Ud.</th>
-                <th>Cantidad</th>
-                <th>Contacto Proveedor</th>
-                <th>Acciones</th>
+                <th>{{ __('general.id') }}</th>
+                <th>{{ __('materials.col_name') }}</th>
+                <th>{{ __('materials.col_unit_price') }}</th>
+                <th>{{ __('materials.col_quantity') }}</th>
+                <th>{{ __('materials.col_supplier') }}</th>
+                <th>{{ __('general.actions') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -28,13 +28,13 @@
                     <td>{{ $material->quantity }}</td>
                     <td>{{ $material->supplier_contact }}</td>
                     <td>
-                        <a href="{{ route('materials.show', $material->material_id) }}">Ver</a> |
-                        <a href="{{ route('materials.edit', $material->material_id) }}">Editar</a> |
+                        <a href="{{ route('materials.show', $material->material_id) }}">{{ __('general.view') }}</a> |
+                        <a href="{{ route('materials.edit', $material->material_id) }}">{{ __('general.edit') }}</a> |
 
                         <form action="{{ route('materials.destroy', $material->material_id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Borrar</button>
+                            <button type="submit">{{ __('general.delete') }}</button>
                         </form>
                     </td>
                 </tr>
