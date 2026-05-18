@@ -62,4 +62,22 @@ class LoginController extends Controller
     return redirect()->route('index');
    }
 
+   //comprobar los campos en el registro con el login :
+    public function checkUserData(Request $request)
+    {
+        $field = $request->input('field'); // 'username' o 'email'
+        $value = $request->input('value'); // Lo que ha escrito el usuario
+
+        // Seguridad estricta: solo permitimos comprobar estos dos campos por seguridad
+        if (!in_array($field, ['username', 'email'])) {
+            return response()->json(['error' => 'Campo no válido'], 400);
+        }
+
+        // Buscamos si existe en la BD
+        $exists = \App\Models\User::where($field, $value)->exists();
+
+        // Devolvemos true o false
+        return response()->json(['exists' => $exists]);
+    }
+
 }

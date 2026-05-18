@@ -119,4 +119,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/signup.js') }}"></script>
 @endsection
