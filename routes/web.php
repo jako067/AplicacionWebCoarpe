@@ -18,7 +18,10 @@ use App\Http\Controllers\DailyWork;
 use App\Http\Controllers\DailyWorkController;
 use App\Http\Controllers\GroupController;
 
-//se puede usar ya el middleware ('is_admin');
+use App\Http\Controllers\GoogleAuthController;
+
+Route::get('/auth/google', [GoogleAuthController::class, 'redirect']);
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
 
 Route::get('/', IndexController::class)->name('index');
 
