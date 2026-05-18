@@ -14,7 +14,6 @@ class DailyWorkRequest extends FormRequest
     public function rules()
     {
         return [
-            'work_id' => 'required|integer',
             'reporte' => 'required|string',
             'date' => 'required|date',
             'evaluation' => 'required|string',

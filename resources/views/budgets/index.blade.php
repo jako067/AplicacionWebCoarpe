@@ -22,11 +22,6 @@
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link text-muted" href="#">
-                    <i class="bi bi-truck me-1"></i> Proveedores
-                </a>
-            </li>
         </ul>
 
         <div class="d-flex justify-content-end mb-4">

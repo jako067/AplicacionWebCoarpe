@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DailyWork extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'work_id',
         'reporte',
@@ -13,4 +15,8 @@ class DailyWork extends Model
         'evaluation',
         'Incidences',
     ];
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
 }

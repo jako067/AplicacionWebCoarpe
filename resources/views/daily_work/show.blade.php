@@ -6,35 +6,30 @@
 
 <div class="container mt-5">
     <div class="card shadow-sm p-4">
-        <h2 class="mb-4 text-center">Detalle de Daily Work</h2>
 
-        <div class="mb-3">
-            <h5 class="text-primary">Work ID: {{ $dailyWork->work_id }}</h5>
-        </div>
+        <h2 class="mb-3">Detalle del Daily Work</h2>
 
-        <ul class="list-group mb-4">
-            <li class="list-group-item">
-                <strong>Reporte:</strong> {{ $dailyWork->reporte }}
-            </li>
-            <li class="list-group-item">
-                <strong>Fecha:</strong> {{ $dailyWork->date }}
-            </li>
-            <li class="list-group-item">
-                <strong>Evaluación:</strong> {{ $dailyWork->evaluation }}
-            </li>
-            <li class="list-group-item">
-                <strong>Incidencias:</strong> {{ $dailyWork->Incidences }}
-            </li>
-        </ul>
+        <p><strong>Grupo:</strong> {{ $dailyWork->group->name ?? 'Sin grupo' }}</p>
+        <p><strong>Fecha:</strong> {{ \Carbon\Carbon::parse($dailyWork->date)->format('d/m/Y') }}</p>
 
-        <div class="d-flex gap-2">
-            <a href="{{ route('daily_work.edit', $dailyWork->id) }}" class="btn btn-warning">
-                Editar
-            </a>
-            <a href="{{ route('daily_work.index') }}" class="btn btn-outline-secondary">
-                Volver
-            </a>
-        </div>
+        <hr>
+
+        <p><strong>Reporte:</strong></p>
+        <p>{{ $dailyWork->reporte }}</p>
+
+        <hr>
+
+        <p><strong>Evaluación:</strong> {{ $dailyWork->evaluation }}</p>
+
+        <hr>
+
+        <p><strong>Incidencias:</strong></p>
+        <p>{{ $dailyWork->incidences }}</p>
+
+        <a href="{{ route('daily_work.index') }}" class="btn btn-secondary mt-3">
+            Volver
+        </a>
+
     </div>
 </div>
 

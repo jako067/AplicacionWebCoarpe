@@ -17,38 +17,43 @@
                             <i class="bi bi-house-door"></i> Inicio
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('daily_work.index') }}"
-                            class="sidebar-link {{ request()->routeIs('daily_work.*') ? 'active' : '' }}">
-                            <i class="bi bi-box-seam"></i> Trabajo Diario
-                        </a>
-                    </li>
+                    @isadminorforeman
+                        <li>
+                            <a href="{{ route('daily_work.index') }}"
+                                class="sidebar-link {{ request()->routeIs('daily_work.*') ? 'active' : '' }}">
+                                <i class="bi bi-box-seam"></i> Trabajo Diario
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('budgets.index') }}"
+                                class="sidebar-link {{ request()->routeIs('budgets.*') ? 'active' : '' }}">
+                                <i class="bi bi-calculator"></i> Presupuestos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('users.index') }}"
+                                class="sidebar-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                                <i class="bi bi-people"></i> Usuarios
+                            </a>
+                        </li>
+                    @endisadminorforeman
                     <li>
                         <a href="{{ route('tasks.index') }}"
                             class="sidebar-link {{ request()->routeIs('tasks.*') ? 'active' : '' }}">
                             <i class="bi bi-clipboard-check"></i> Jornada
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('budgets.index') }}"
-                            class="sidebar-link {{ request()->routeIs('budgets.*') ? 'active' : '' }}">
-                            <i class="bi bi-calculator"></i> Presupuestos
-                        </a>
-                    </li>
+
                     <li>
                         <a href="{{ route('messages.index') }}"
                             class="sidebar-link {{ request()->routeIs('messages.*') ? 'active' : '' }}">
                             <i class="bi bi-chat-dots"></i> Mensajes
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('users.index') }}"
-                            class="sidebar-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                            <i class="bi bi-people"></i> Usuarios
-                        </a>
-                    </li>
 
-                    <li><a href="{{ route('groups.index') }}" class="sidebar-link {{ request()->routeIs('groups.*') ? 'active' : '' }}"><i class="bi bi-people"></i>Grupos</a>
+                    <li><a href="{{ route('groups.index') }}"
+                            class="sidebar-link {{ request()->routeIs('groups.*') ? 'active' : '' }}"><i
+                                class="bi bi-people"></i>Grupos</a>
                     </li>
                 </ul>
             </nav>

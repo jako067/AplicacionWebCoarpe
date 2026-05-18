@@ -36,6 +36,7 @@ Route::resource('tasks', TaskController::class)->middleware('auth');
 Route::resource('messages', MessageController::class)->middleware('auth');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/daily-work/fetch', [DailyWorkController::class, 'fetch']);
 
 
 Route::prefix('users/{user}')->group(function () {
@@ -47,7 +48,7 @@ Route::prefix('users/{user}')->group(function () {
 Route::get('privacity',[lawController::class,'privacity'])->name('privacity');
 Route::get('terms',[lawController::class,'terms'])->name('terms');
 
-Route::resource('daily_work',DailyWorkController::class);
+Route::resource('daily_work',DailyWorkController::class)->middleware('is_admin_or_foreman');
 
 Route::resource('groups', GroupController::class);
 

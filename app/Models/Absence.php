@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Absence extends Model
 {
-     protected $fillable = ['user_id', 'fecha', 'tipo', 'descripcion'];
+    use HasFactory;
+
+    protected $fillable = ['user_id', 'fecha', 'tipo', 'descripcion'];
 
     public function user()
     {
