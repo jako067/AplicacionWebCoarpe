@@ -15,8 +15,8 @@
         </a>
     </div>
 
-    <div class="row mb-4">
-        <div class="col-md-5 col-lg-4">
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
             <div class="card border-0 shadow-sm bg-verde-oscuro text-white p-3 h-100 rounded-3">
                 <div class="d-flex align-items-center gap-3">
                     <div class="icon-circle-sm bg-white bg-opacity-25 rounded-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
@@ -25,6 +25,20 @@
                     <div>
                         <p class="mb-0 small text-white text-opacity-75 text-uppercase tracking-wider">Total Acumulado</p>
                         <h3 class="fw-bold mb-0">{{ $totalHours }} <span class="fs-6 fw-normal text-white text-opacity-75">h totales</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm bg-white border p-3 h-100 rounded-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="icon-circle-sm bg-warning bg-opacity-10 text-warning rounded-3 d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+                        <i class="bi bi-stopwatch fs-4"></i>
+                    </div>
+                    <div>
+                        <p class="mb-0 small text-muted text-uppercase tracking-wider">Horas Extra Totales</p>
+                        <h3 class="fw-bold mb-0 text-dark">{{ $totalExtraHours }} <span class="fs-6 fw-normal text-muted">h extra</span></h3>
                     </div>
                 </div>
             </div>

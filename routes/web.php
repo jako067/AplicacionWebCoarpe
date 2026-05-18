@@ -50,3 +50,12 @@ Route::get('terms',[lawController::class,'terms'])->name('terms');
 Route::resource('daily_work',DailyWorkController::class);
 
 Route::resource('groups', GroupController::class);
+
+// comprobar el registro
+
+Route::post('/check-user-data', [App\Http\Controllers\LoginController::class, 'checkUserData'])
+    ->middleware('throttle:5,1')
+    ->name('check.user.data');
+
+    // ruta extra para buscar los messages
+    Route::get('/messages-filter', [App\Http\Controllers\MessageController::class, 'filter'])->name('messages.filter');

@@ -65,10 +65,10 @@
                             <span class="input-group-text bg-light text-muted"><i class="bi bi-cup-hot"></i></span>
                             <input type="number" class="form-control @error('break_minutes') is-invalid @enderror" name="break_minutes" id="break_minutes" min="0" value="{{ old('break_minutes', 0) }}">
                             <span class="input-group-text bg-light text-muted">min</span>
-                            @error('break_minutes')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
+                        @error('break_minutes')
+                            <div class="text-danger small mt-1" style="font-size: 0.8rem;">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-md-6">
@@ -77,12 +77,17 @@
                             <span class="input-group-text bg-light text-muted"><i class="bi bi-stopwatch"></i></span>
                             <input type="number" step="0.25" class="form-control @error('extra_hours') is-invalid @enderror" name="extra_hours" id="extra_hours" min="0" value="{{ old('extra_hours', 0) }}">
                             <span class="input-group-text bg-light text-muted">h</span>
-                            @error('extra_hours')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
+                        @error('extra_hours')
+                            <div class="text-danger small mt-1" style="font-size: 0.8rem;">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
+            </div>
+
+            <div class="p-3 bg-light rounded-3 border d-flex align-items-center justify-content-between mb-4">
+                <span class="text-muted small fw-bold"><i class="bi bi-calculator me-1"></i> Total de la jornada calculado:</span>
+                <span id="liveTotalHours" class="badge bg-dark fs-6 rounded-pill px-3 py-2">0.00 h</span>
             </div>
 
             <hr class="my-4 text-muted opacity-25">
@@ -93,8 +98,9 @@
                     <i class="bi bi-save me-2"></i> Guardar Jornada
                 </button>
             </div>
-
         </form>
     </div>
 </div>
+
+<script src="{{ asset('js/extraTime.js') }}"></script>
 @endsection

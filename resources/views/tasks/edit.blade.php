@@ -23,7 +23,7 @@
             <div class="mb-4 pb-4 border-bottom">
                 <div class="d-flex align-items-center mb-3">
                     <i class="bi bi-clock-history fs-5 me-2 text-verde-oscuro"></i>
-                    <h5 class="fw-bold mb-0 text-dark">Modificar Horario Base</h5>
+                    <h5 class="fw-bold mb-0 text-dark">Datos de la Jornada</h5>
                 </div>
 
                 <div class="row g-4">
@@ -56,7 +56,7 @@
             <div class="mb-4">
                 <div class="d-flex align-items-center mb-3">
                     <i class="bi bi-plus-circle-fill fs-5 me-2 text-verde-oscuro"></i>
-                    <h5 class="fw-bold mb-0 text-dark">Ajustar Descansos y Horas Extra</h5>
+                    <h5 class="fw-bold mb-0 text-dark">Descansos y Horas Extra</h5>
                 </div>
 
                 <div class="row g-4">
@@ -66,10 +66,10 @@
                             <span class="input-group-text bg-light text-muted"><i class="bi bi-cup-hot"></i></span>
                             <input type="number" class="form-control @error('break_minutes') is-invalid @enderror" name="break_minutes" id="break_minutes" min="0" value="{{ old('break_minutes', $task->break_minutes) }}">
                             <span class="input-group-text bg-light text-muted">min</span>
-                            @error('break_minutes')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
+                        @error('break_minutes')
+                            <div class="text-danger small mt-1" style="font-size: 0.8rem;">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="col-md-6">
@@ -78,29 +78,30 @@
                             <span class="input-group-text bg-light text-muted"><i class="bi bi-stopwatch"></i></span>
                             <input type="number" step="0.25" class="form-control @error('extra_hours') is-invalid @enderror" name="extra_hours" id="extra_hours" min="0" value="{{ old('extra_hours', $task->extra_hours) }}">
                             <span class="input-group-text bg-light text-muted">h</span>
-                            @error('extra_hours')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
+                        @error('extra_hours')
+                            <div class="text-danger small mt-1" style="font-size: 0.8rem;">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
 
-            <hr class="my-4 text-muted opacity-25">
-
-            <div class="alert alert-info bg-light border-info border-opacity-25 text-dark d-flex align-items-center mb-4" role="alert">
-                <i class="bi bi-info-circle-fill text-info fs-5 me-3"></i>
-                <small>Al guardar, el sistema <strong>recalculará automáticamente</strong> el total de horas trabajadas para esta jornada.</small>
+            <div class="p-3 bg-light rounded-3 border d-flex align-items-center justify-content-between mb-4">
+                <span class="text-muted small fw-bold"><i class="bi bi-calculator me-1"></i> Total de la jornada calculado:</span>
+                <span id="liveTotalHours" class="badge bg-dark fs-6 rounded-pill px-3 py-2">{{ $task->total_hours }} h</span>
             </div>
+
+            <hr class="my-4 text-muted opacity-25">
 
             <div class="d-flex justify-content-end gap-2">
                 <a href="{{ route('tasks.index') }}" class="btn btn-light border px-4 shadow-sm">Cancelar</a>
                 <button type="submit" class="btn btn-verde-oscuro fw-semibold px-4 shadow-sm">
-                    <i class="bi bi-calculator me-2"></i> Recalcular y Actualizar
+                    <i class="bi bi-arrow-clockwise me-2"></i> Actualizar Jornada
                 </button>
             </div>
-
         </form>
     </div>
 </div>
+
+<script src="{{ asset('js/extraTime.js') }}"></script>
 @endsection

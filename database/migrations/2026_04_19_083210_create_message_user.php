@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages_users', function (Blueprint $table) {
-            $table->foreignId('messages_id')->constrained();
-            $table->foreignId('users_id')->constrained();
-            $table->unique(['messages_id','users_id'],'foreign_keys');
+        Schema::create('message_user', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('message_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->unique(['message_id','user_id'],'foreign_keys');
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages_users');
+        Schema::dropIfExists('message_user');
     }
 };
