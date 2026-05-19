@@ -4,58 +4,26 @@
 
 @section('content')
 
-<div class="container mt-5">
+<div class="container-fluid max-w-4xl">
 
-    <div class="card shadow-sm p-4 mb-4">
-        <h2 class="text-center mb-3">{{ __('Inicio') }}</h2>
+    @auth
+    <div class="card border-0 shadow-sm p-5 text-center">
 
-        <p class="text-center text-muted">
-            {{ __('Esto es el inicio de la aplicación.') }}
+        <div class="mb-3">
+            <i class="bi bi-person-circle text-verde-oscuro" style="font-size: 4rem;"></i>
+        </div>
+
+        <h2 class="fw-bold text-dark mb-1">{{ __('Bienvenido') }}, {{ Auth::user()->name }}</h2>
+        <p class="text-muted mb-3">
+            {{ Auth::user()->isAdmin() ? __('Administrador') : (Auth::user()->rol === 'foreman' ? __('Capataz') : __('Trabajador')) }}
         </p>
 
-        @auth
-            <div class="text-center mb-4">
-                <h5>{{ __('Bienvenido') }}, {{ Auth::user()->name }}</h5>
-            </div>
+        <hr class="w-25 mx-auto text-muted opacity-25 mb-3">
 
-            @if (auth()->user()->isAdmin())
-
-                <div class="row g-3">
-
-                    <div class="col-md-6">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">{{ __('Materiales') }}</h5>
-                                <a href="{{ route('materials.index') }}" class="btn btn-outline-primary btn-sm">
-                                    {{ __('Ver listado') }}
-                                </a>
-                                <a href="{{ route('materials.create') }}" class="btn btn-primary btn-sm">
-                                    {{ __('Crear material') }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">{{ __('Presupuestos') }}</h5>
-                                <a href="{{ route('budgets.index') }}" class="btn btn-outline-primary btn-sm">
-                                    {{ __('Ver listado') }}
-                                </a>
-                                <a href="{{ route('budgets.create') }}" class="btn btn-primary btn-sm">
-                                    {{ __('Crear presupuesto') }}
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            @endif
-        @endauth
+       
 
     </div>
+    @endauth
 
 </div>
 
