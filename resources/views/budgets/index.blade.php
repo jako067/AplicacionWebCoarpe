@@ -7,7 +7,7 @@
 
     <div class="card border-0 shadow-sm p-4 mb-4">
         <h2 class="fw-bold mb-1 text-dark">Presupuestos de Obras</h2>
-        <p class="text-muted mb-4">Gestión de presupuestos, horas estimadas y costes de mano de obra.</p>
+        <p class="text-muted mb-4">Gestión unificada de presupuestos, tiempos estimados, personal y materiales.</p>
 
         <ul class="nav custom-tabs mb-4">
             <li class="nav-item">
@@ -15,13 +15,11 @@
                     <i class="bi bi-file-earmark-text me-1"></i> Presupuestos
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link text-muted" href="{{ route('materials.index') }}">
                     <i class="bi bi-box-seam me-1"></i> Materiales
                 </a>
             </li>
-
         </ul>
 
         <div class="d-flex justify-content-end mb-4">
@@ -30,7 +28,7 @@
             </a>
         </div>
 
-        <div class="border rounded-3">
+        <div class="border rounded-3 overflow-hidden">
             <div class="bg-light border-bottom p-3 d-flex justify-content-between align-items-center">
                 <span class="text-dark fw-medium">Presupuestos Guardados</span>
                 <span class="badge bg-secondary rounded-pill">{{ $budgets->count() }} totales</span>
@@ -42,23 +40,25 @@
 
                         <div class="d-flex align-items-center gap-3">
                             <div class="icon-circle-sm bg-icon-green-soft rounded-3 shadow-sm d-flex align-items-center justify-content-center flex-shrink-0" style="width: 45px; height: 45px;">
-                                <i class="bi bi-file-earmark-text fs-5"></i>
+                                <i class="bi bi-file-earmark-text fs-5 text-verde-oscuro"></i>
                             </div>
 
                             <div>
                                 <h6 class="fw-bold text-dark mb-1">Presupuesto #{{ $budget->id_budget }}</h6>
-                                <div class="d-flex flex-wrap gap-2 text-muted small">
-                                    <span><i class="bi bi-people me-1"></i> {{ $budget->workers_quantity }} Trab.</span>
+                                <div class="d-flex flex-wrap gap-2 text-muted small align-items-center">
+                                    <span><i class="bi bi-people me-1"></i> {{ $budget->workers_quantity }} Peones</span>
                                     <span>&bull;</span>
-                                    <span><i class="bi bi-clock me-1"></i> {{ $budget->hours_quantity }}h</span>
-                                    <span>&bull;</span>
-                                    <span><i class="bi bi-currency-euro me-1"></i> {{ $budget->price_x_hour }}/h</span>
+                                    @if($budget->staff_quantity > 0)
+                                        <span><i class="bi bi-person-badge me-1"></i> {{ $budget->staff_quantity }} Staff</span>
+                                        <span>&bull;</span>
+                                    @endif
+                                    <span><i class="bi bi-clock me-1"></i> {{ $budget->hours_quantity }}h est.</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="text-md-end text-start mt-2 mt-md-0">
-                            <small class="text-muted d-block mb-1">Coste Total (Mano de Obra)</small>
+                            <small class="text-muted d-block mb-1">Total Presupuesto</small>
                             <h5 class="fw-bold text-verde-oscuro mb-0">{{ number_format($budget->final_price, 2) }} €</h5>
                         </div>
 
@@ -87,7 +87,7 @@
                     <div class="text-center py-5 text-muted">
                         <i class="bi bi-folder2-open fs-1 d-block mb-2 opacity-50"></i>
                         <p class="mb-0">No hay presupuestos registrados en el sistema.</p>
-                        <a href="{{ route('budgets.create') }}" class="btn btn-sm btn-outline-success mt-3">Crear el primero</a>
+                        <a href="{{ route('budgets.create') }}" class="btn btn-sm btn-outline-success mt-3fw-medium">Crear el primero</a>
                     </div>
                 @endforelse
             </div>
