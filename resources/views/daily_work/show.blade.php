@@ -1,33 +1,33 @@
 @extends('layout.layout')
 
-@section('title', 'Detalle Daily Work')
+@section('title', __('Detalle Daily Work'))
 
 @section('content')
 
 <div class="container mt-5">
     <div class="card shadow-sm p-4">
 
-        <h2 class="mb-3">Detalle del Daily Work</h2>
+        <h2 class="mb-3">{{ __('Detalle del Daily Work') }}</h2>
 
-        <p><strong>Grupo:</strong> {{ $dailyWork->group->name ?? 'Sin grupo' }}</p>
-        <p><strong>Fecha:</strong> {{ \Carbon\Carbon::parse($dailyWork->date)->format('d/m/Y') }}</p>
+        <p><strong>{{ __('Grupo:') }}</strong> {{ $dailyWork->group->name ?? __('Sin grupo') }}</p>
+        <p><strong>{{ __('Fecha:') }}</strong> {{ \Carbon\Carbon::parse($dailyWork->date)->format('d/m/Y') }}</p>
 
         <hr>
 
-        <p><strong>Reporte:</strong></p>
+        <p><strong>{{ __('Reporte:') }}</strong></p>
         <p>{{ $dailyWork->reporte }}</p>
 
         <hr>
 
-        <p><strong>Evaluación:</strong> {{ $dailyWork->evaluation }}</p>
+        <p><strong>{{ __('Evaluación:') }}</strong> {{ $dailyWork->evaluation }}</p>
 
         <hr>
 
-        <p><strong>Incidencias:</strong></p>
+        <p><strong>{{ __('Incidencias:') }}</strong></p>
         <p>{{ $dailyWork->incidences }}</p>
 
         <a href="{{ route('daily_work.index') }}" class="btn btn-secondary mt-3">
-            Volver
+            {{ __('Volver') }}
         </a>
 
     </div>

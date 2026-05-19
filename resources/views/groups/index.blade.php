@@ -1,18 +1,18 @@
 @extends('layout.layout')
 
-@section('title', 'Gestión de Grupos')
+@section('title', __('Gestión de Grupos'))
 
 @section('content')
     <div class="container-fluid max-w-4xl">
 
         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-4 gap-3">
             <div>
-                <h2 class="fw-bold mb-1 text-dark">Grupos de Trabajo</h2>
-                <p class="text-muted mb-0">Organiza tu plantilla en equipos, cuadrillas o departamentos operativos.</p>
+                <h2 class="fw-bold mb-1 text-dark">{{ __('Grupos de Trabajo') }}</h2>
+                <p class="text-muted mb-0">{{ __('Organiza tu plantilla en equipos, cuadrillas o departamentos operativos.') }}</p>
             </div>
             @isadminorforeman
                 <a href="{{ route('groups.create') }}" class="btn btn-verde-oscuro fw-semibold shadow-sm rounded-3 px-4 py-2">
-                    <i class="bi bi-plus-lg me-2"></i> Crear Grupo
+                    <i class="bi bi-plus-lg me-2"></i> {{ __('Crear Grupo') }}
                 </a>
             @endisadminorforeman
 
@@ -22,18 +22,18 @@
 
             <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
                 <h6 class="fw-bold text-dark mb-0">
-                    <i class="bi bi-diagram-3 text-primary me-2"></i> Equipos Configurados
+                    <i class="bi bi-diagram-3 text-primary me-2"></i> {{ __('Equipos Configurados') }}
                 </h6>
-                <span class="badge bg-secondary rounded-pill">{{ $groups->count() }} grupos</span>
+                <span class="badge bg-secondary rounded-pill">{{ $groups->count() }} {{ __('grupos') }}</span>
             </div>
 
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th class="text-muted small fw-semibold ps-4" style="width: 30%">Nombre del Grupo</th>
-                            <th class="text-muted small fw-semibold" style="width: 50%">Miembros Asignados</th>
-                            <th class="text-muted small fw-semibold text-end pe-4" style="width: 20%">Acciones</th>
+                            <th class="text-muted small fw-semibold ps-4" style="width: 30%">{{ __('Nombre del Grupo') }}</th>
+                            <th class="text-muted small fw-semibold" style="width: 50%">{{ __('Miembros Asignados') }}</th>
+                            <th class="text-muted small fw-semibold text-end pe-4" style="width: 20%">{{ __('Acciones') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,7 +59,7 @@
                                                 {{ $user->name }}
                                             </span>
                                         @empty
-                                            <span class="text-muted small italic">Sin integrantes asignados</span>
+                                            <span class="text-muted small italic">{{ __('Sin integrantes asignados') }}</span>
                                         @endforelse
                                     </div>
                                 </td>
@@ -67,16 +67,16 @@
                                     <td class="text-end pe-4">
                                         <div class="d-flex justify-content-end gap-1">
                                             <a href="{{ route('groups.edit', $group) }}" class="btn btn-sm btn-outline-primary"
-                                                title="Editar Grupo">
+                                                title="{{ __('Editar Grupo') }}">
                                                 <i class="bi bi-pencil"></i>
                                             </a>
 
                                             <form action="{{ route('groups.destroy', $group) }}" method="POST" class="d-inline"
-                                                onsubmit="return confirm('¿Seguro que quieres eliminar este grupo?');">
+                                                onsubmit="return confirm('{{ __('¿Seguro que quieres eliminar este grupo?') }}');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                    title="Borrar Grupo">
+                                                    title="{{ __('Borrar Grupo') }}">
                                                     <i class="bi bi-trash"></i>
                                                 </button>
                                             </form>
@@ -89,7 +89,7 @@
                             <tr>
                                 <td colspan="3" class="text-center py-5 text-muted">
                                     <i class="bi bi-collection fs-1 d-block mb-2 opacity-50"></i>
-                                    <p class="mb-0 small">No se ha creado ningún grupo operativo todavía.</p>
+                                    <p class="mb-0 small">{{ __('No se ha creado ningún grupo operativo todavía.') }}</p>
                                 </td>
                             </tr>
                         @endforelse

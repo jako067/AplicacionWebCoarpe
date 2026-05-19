@@ -1,13 +1,13 @@
 @extends('layout.layout')
 
-@section('title', 'Gestión de Faltas')
+@section('title', __('Gestión de Faltas'))
 
 @section('content')
 <div class="container-fluid max-w-4xl">
 
     <div class="mb-4">
-        <h2 class="fw-bold mb-1 text-dark">Gestión de Faltas y Asistencia</h2>
-        <p class="text-muted mb-0">Selecciona un miembro de la plantilla para revisar su historial o registrar una nueva incidencia.</p>
+        <h2 class="fw-bold mb-1 text-dark">{{ __('Gestión de Faltas y Asistencia') }}</h2>
+        <p class="text-muted mb-0">{{ __('Selecciona un miembro de la plantilla para revisar su historial o registrar una nueva incidencia.') }}</p>
     </div>
 
     <div class="card border-0 shadow-sm p-4 rounded-3 bg-white">
@@ -18,10 +18,10 @@
                 <span class="badge bg-secondary bg-opacity-10 text-dark border border-secondary border-opacity-25 fw-bold text-uppercase tracking-wider px-3 py-1" style="font-size: 0.75rem;">
                     <i class="bi bi-person-workspace me-1 text-secondary"></i>
                     {{ match($rol) {
-                        'admin' => 'Administradores',
-                        'foreman' => 'Capataces / Jefes de Equipo',
-                        'laborer' => 'Operarios / Trabajadores',
-                        default => 'Sin Rol Asignado'
+                        'admin' => __('Administradores'),
+                        'foreman' => __('Capataces / Jefes de Equipo'),
+                        'laborer' => __('Operarios / Trabajadores'),
+                        default => __('Sin Rol Asignado')
                     } }}
                 </span>
             </div>
@@ -45,12 +45,12 @@
                             <div class="d-flex flex-column gap-2 mt-auto">
                                 <a href="{{ route('absences.index', $user->id) }}"
                                    class="btn btn-sm btn-white border text-dark fw-medium shadow-xs">
-                                    <i class="bi bi-calendar3 me-1 text-muted"></i> Ver historial
+                                    <i class="bi bi-calendar3 me-1 text-muted"></i> {{ __('Ver historial') }}
                                 </a>
 
                                 <a href="{{ route('absences.create', $user->id) }}"
                                    class="btn btn-sm btn-outline-danger fw-medium shadow-xs">
-                                    <i class="bi bi-calendar-x me-1"></i> Añadir falta
+                                    <i class="bi bi-calendar-x me-1"></i> {{ __('Añadir falta') }}
                                 </a>
                             </div>
 
@@ -62,7 +62,7 @@
         @empty
             <div class="text-center py-5 text-muted">
                 <i class="bi bi-people fs-1 d-block mb-2 opacity-50"></i>
-                <p class="mb-0">No se encontraron miembros en la plantilla para gestionar.</p>
+                <p class="mb-0">{{ __('No se encontraron miembros en la plantilla para gestionar.') }}</p>
             </div>
         @endforelse
 

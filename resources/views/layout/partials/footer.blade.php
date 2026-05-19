@@ -3,11 +3,11 @@
         <div class="d-flex flex-column flex-md-row align-items-center justify-content-between small">
 
             <div class="text-muted fw-medium mb-2 mb-md-0">
-                &copy; {{ date('Y') }} COARPE. Todos los derechos reservados.
+                &copy; {{ date('Y') }} COARPE. {{ __('Todos los derechos reservados.') }}
             </div>
 
             <div class="text-muted">
-                <span class="fw-semibold">Aplicación Web Coarpe</span> &middot; Sistema de Gestión Interna
+                <span class="fw-semibold">{{ __('Aplicación Web Coarpe') }}</span> &middot; {{ __('Sistema de Gestión Interna') }}
             </div>
 
         </div>
