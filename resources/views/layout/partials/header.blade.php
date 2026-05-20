@@ -1,3 +1,13 @@
+{{-- Corrección inline para el estado hover del botón de registro --}}
+<style>
+    .btn-signup-header:hover {
+        background-color: #ffffff !important;
+        color: var(--color-verde-oscuro, #144d34) !important; /* Mantiene tu color corporativo */
+        border-color: #ffffff !important;
+        opacity: 1 !important;
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg main-header shadow-sm py-2 z-3 position-relative">
     <div class="container-fluid px-3 px-md-4">
         @auth
