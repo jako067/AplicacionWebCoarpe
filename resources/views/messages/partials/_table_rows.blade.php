@@ -8,7 +8,7 @@
                     <span class="punto-lectura p-1 bg-primary border border-light rounded-circle d-inline-block" style="width: 8px; height: 8px;"></span>
                 @endif
                 <span class="text-dark small">
-                    {{ $type === 'inbox' ? ($message->user->name ?? 'Sistema') : 'Yo (Enviado)' }}
+                    {{ $type === 'inbox' ? ($message->user->name ?? __('Sistema')) : __('Yo (Enviado)') }}
                 </span>
             </div>
         </td>
@@ -20,7 +20,7 @@
         <td class="text-center">
             @if ($message->document)
                 <a href="{{ asset('storage/' . $message->document) }}" target="_blank" class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 text-decoration-none px-2 py-1">
-                    <i class="bi bi-paperclip"></i> Ver Archivo
+                    <i class="bi bi-paperclip"></i> {{ __('Ver Archivo') }}
                 </a>
             @else
                 <span class="text-muted small">-</span>
@@ -33,14 +33,14 @@
 
         <td class="text-end pe-4">
             <div class="d-flex justify-content-end gap-1">
-                <a href="{{ route('messages.show', $message->id) }}" class="btn btn-sm btn-outline-secondary btn-view-message" data-id="{{ $message->id }}" title="Ver detalle">
+                <a href="{{ route('messages.show', $message->id) }}" class="btn btn-sm btn-outline-secondary btn-view-message" data-id="{{ $message->id }}" title="{{ __('Ver detalle') }}">
                     <i class="bi bi-eye"></i>
                 </a>
                 @if($type === 'outbox')
-                    <form action="{{ route('messages.destroy', $message->id) }}" method="POST" class="d-inline" onsubmit="return confirm('¿Seguro que deseas eliminar este mensaje?');">
+                    <form action="{{ route('messages.destroy', $message->id) }}" method="POST" class="d-inline" onsubmit="return confirm('{{ __('¿Seguro que deseas eliminar este mensaje?') }}');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Borrar"><i class="bi bi-trash"></i></button>
+                        <button type="submit" class="btn btn-sm btn-outline-danger" title="{{ __('Borrar') }}"><i class="bi bi-trash"></i></button>
                     </form>
                 @endif
             </div>
@@ -50,7 +50,7 @@
     <tr>
         <td colspan="6" class="text-center py-5 text-muted">
             <i class="bi bi-inbox fs-2 d-block mb-2 opacity-50"></i>
-            <p class="mb-0 small">No se encontraron registros en esta bandeja.</p>
+            <p class="mb-0 small">{{ __('No se encontraron registros en esta bandeja.') }}</p>
         </td>
     </tr>
 @endforelse

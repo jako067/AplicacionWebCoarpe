@@ -2,6 +2,7 @@
 
 use App\Http\Middleware\IsAdminMiddleware;
 use App\Http\Middleware\IsForemanMiddleware;
+use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -14,11 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->appendToGroup('web', SetLocale::class);
         $middleware->alias([
             'is_admin' => IsAdminMiddleware::class,
             'is_foreman' => IsForemanMiddleware::class,
             'is_admin_or_foreman' => \App\Http\Middleware\IsAdminOrForemanMiddleware::class,
-
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

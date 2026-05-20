@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('message_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->unique(['message_id','user_id'],'foreign_keys');
+            $table->unique(['message_id','user_id'],'message_user_unique');
         });
     }
 

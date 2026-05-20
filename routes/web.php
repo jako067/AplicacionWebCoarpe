@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbsenceController;
 use App\Http\Controllers\AbsenceController2;
+use App\Http\Controllers\LocaleController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BudgetController;
@@ -63,3 +64,5 @@ Route::post('/check-user-data', [App\Http\Controllers\LoginController::class, 'c
 
     // ruta extra para buscar los messages
     Route::get('/messages-filter', [App\Http\Controllers\MessageController::class, 'filter'])->name('messages.filter');
+
+Route::post('/locale', LocaleController::class)->name('locale')->middleware('auth');
