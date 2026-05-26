@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -21,6 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
+        'rol',
+        'DNI',
+        'phone',
+        'lang',
     ];
 
     /**
@@ -44,5 +50,27 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function isAdmin(): bool
+    {
+
+        return $this->rol === 'admin';
+    }
+    public function absences()
+    {
+        return $this->hasMany(Absence::class);
+    }
+    public function messagesCreated()
+    {
+        return $this->hasMany(Message::class, 'user_id');
+    }
+
+    public function messages(): BelongsToMany
+    {
+        return $this->belongsToMany(Message::class); //N:M
+    }
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
     }
 }

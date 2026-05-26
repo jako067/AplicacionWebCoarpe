@@ -1,0 +1,26 @@
+:root {
+    --color-primary: #1e293b;
+    --color-secondary: #334155;
+    --color-accent: #f59e0b;
+    --color-text: #f8fafc;          
+    --color-hover: #475569;
+}
+
+.btn-primary-custom {
+    background-color: var(--color-accent);
+    border: none;
+    color: #000;
+}
+
+.btn-primary-custom:hover {
+    opacity: 0.9;
+}
+
+.btn-outline-custom {
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+}
+
+.btn-outline-custom:hover {
+    background-color: var(--color-hover);
+}

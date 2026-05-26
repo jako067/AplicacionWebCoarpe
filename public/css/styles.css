@@ -1,0 +1,282 @@
+:root {
+    --color-verde-oscuro: #1a5f4d;
+    --color-azul-oscuro: #2c5282;
+    --color-fondo-gris: #f5f7fa;
+    --color-texto-gris: #6b7280;
+    --color-borde-gris: #d1d5db;
+    --color-verde-claro: #e6f4f1;
+}
+/* header prinicpal */
+.main-header {
+    background-color: var(--color-verde-oscuro);
+    border-bottom: 3px solid var(--color-azul-oscuro);
+}
+
+.header-logo-box {
+    background-color: white;
+    color: var(--color-verde-oscuro);
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav-link-custom {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.nav-link-custom:hover {
+    color: var(--color-verde-claro);
+}
+
+/* Botón de registro específico */
+.btn-signup-header {
+    background-color: var(--color-verde-claro);
+    color: var(--color-verde-oscuro) !important;
+    font-weight: 600;
+}
+/*footer*/
+.main-content-wrapper {
+    flex-grow: 1;
+    background-color: var(--color-fondo-gris);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/*menu navega*/
+/* --- ESTILOS DE LA BARRA LATERAL (SIDEBAR) --- */
+
+.sidebar-wrapper {
+    width: 260px;
+    min-height: calc(100vh - 60px); /* Altura total menos el header */
+    background-color: white;
+    border-right: 1px solid var(--color-borde-gris);
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: var(--color-texto-gris);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.sidebar-link i {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+/* Efecto Hover */
+.sidebar-link:hover {
+    background-color: var(--color-fondo-gris);
+    color: var(--color-azul-oscuro);
+}
+
+/* Elemento Activo */
+.sidebar-link.active {
+    background-color: var(--color-verde-claro);
+    color: var(--color-verde-oscuro);
+    font-weight: 600;
+}
+
+/* Botón de cerrar sesión */
+.sidebar-link-logout {
+    color: #dc3545; /* Rojo Bootstrap */
+}
+
+.sidebar-link-logout:hover {
+    background-color: #ffe6e6;
+    color: #c82333;
+}
+
+/* Contenedor principal para que ocupe el resto del espacio */
+.main-content-wrapper {
+    flex-grow: 1;
+    background-color: var(--color-fondo-gris);
+}
+/* Fondo de la pantalla */
+body {
+    background-color: var(--color-fondo-gris);
+}
+
+/* Tarjeta del formulario */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 12px;
+}
+/* Tarjeta específica para el registro */
+.register-card {
+    width: 100%;
+    max-width: 750px;
+    border-radius: 12px;
+}
+/* Cuadrado del logo */
+.logo-box {
+    background-color: var(--color-verde-oscuro);
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    font-size: 28px;
+}
+
+/* Estilos de inputs */
+.input-group-text,
+.form-control {
+    border-color: var(--color-borde-gris);
+    color: var(--color-texto-gris);
+}
+
+.input-group-text {
+    background-color: transparent;
+}
+
+.form-control:focus {
+    border-color: var(--color-verde-oscuro);
+    box-shadow: 0 0 0 0.25rem rgba(26, 95, 77, 0.25);
+}
+
+.form-control::placeholder {
+    color: var(--color-borde-gris);
+}
+
+/* Botón principal */
+.btn-login {
+    background-color: var(--color-verde-oscuro);
+    border-color: var(--color-verde-oscuro);
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: var(--color-azul-oscuro);
+    border-color: var(--color-azul-oscuro);
+    color: white;
+}
+
+/* Estilo del checkbox al hacer clic */
+.form-check-input:checked {
+    background-color: var(--color-verde-oscuro);
+    border-color: var(--color-verde-oscuro);
+}
+
+/* Caja inferior de credenciales */
+.caja-credenciales {
+    background-color: var(--color-verde-claro);
+    color: var(--color-texto-gris);
+    border-radius: 8px;
+}
+
+/* --- ESTILOS PANEL DE INICIO (DASHBOARD) --- */
+
+/* Header degradado */
+.welcome-header {
+    background: linear-gradient(135deg, var(--color-verde-oscuro) 0%, var(--color-azul-oscuro) 100%);
+}
+
+/* Colores extra para iconos */
+.bg-azul-oscuro { background-color: var(--color-azul-oscuro); }
+.bg-verde-oscuro { background-color: var(--color-verde-oscuro); }
+.text-verde-oscuro { color: var(--color-verde-oscuro); }
+.bg-verde-claro { background-color: var(--color-verde-claro); }
+
+/* Cajas de iconos en estadísticas */
+.stat-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+/* Cajas de iconos en accesos rápidos */
+.quick-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+/* Efecto hover en las tarjetas */
+.quick-access-card, .stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quick-access-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.08)!important;
+}
+
+/* Botones específicos de las tarjetas admin */
+.btn-outline-custom {
+    border-color: var(--color-borde-gris);
+    color: var(--color-texto-gris);
+}
+.btn-outline-custom:hover {
+    background-color: var(--color-verde-claro);
+    color: var(--color-verde-oscuro);
+    border-color: var(--color-verde-claro);
+}
+
+/* --- ESTILOS DE MENSAJES Y TRÁMITES --- */
+
+.msg-stat-card {
+    border-radius: 12px;
+    border-width: 1.5px;
+    transition: transform 0.2s;
+}
+
+.msg-stat-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Variante Azul (Notificaciones) */
+.border-blue-soft { border-color: #b8cbf0; }
+.bg-blue-soft { background-color: #f0f4fd; }
+.text-blue-dark { color: #2a52be; }
+.bg-blue-icon { background-color: #3b82f6; color: white; }
+
+/* Variante Verde (Justificantes) */
+.border-green-soft { border-color: #bbf7d0; }
+.bg-green-soft { background-color: #f0fdf4; }
+.text-green-dark { color: #166534; }
+.bg-green-icon { background-color: #22c55e; color: white; }
+
+/* Variante Verde Oscuro (Avisos) */
+.border-teal-soft { border-color: #ccfbf1; }
+.bg-teal-soft { background-color: #f0fdfa; }
+.text-teal-dark { color: #115e59; }
+.bg-teal-icon { background-color: #14b8a6; color: white; }
+
+/* Icono redondo dentro de las tarjetas */
+.icon-circle-sm {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
